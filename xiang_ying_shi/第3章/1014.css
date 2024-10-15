@@ -1,0 +1,75 @@
+body{
+    margin: 0;
+}
+.act_wrapper{
+    position: relative;
+    min-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    /* 高度 */
+    height: 750px;
+}
+.act_content{
+    position: relative;
+    z-index: 2;
+    width: 1000px;
+    height: 1200px;
+    margin: 0 auto;
+    margin-top: -569px;
+}
+.mod_style{
+    position: relative;
+    top: 716px;
+    left: 200px;
+    width: 870px;
+    height: 560px;
+}
+.bg{
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    width: 1920px;
+    height: 750px;
+    margin-left: -1350px;
+    background: url(images/bg.jpg) 100% 0 no-repeat;
+    z-index: -1;
+}
+
+.prach{
+    position: absolute;
+    background: url(images/peach.png) 0 0 no-repeat;
+    width: 90px;
+    height: 100px;
+    top: 0px;
+    left: 0px;
+}
+.prach1{
+    background-position: 0 0;
+    top: 110px;
+    left: 72px;
+}
+.prach2{
+    background-position: 0 -115px;
+    top: 26px;
+    left: 242px;
+}
+.prach3{
+    background-position: 0 -215px;
+    top: 58px;
+    left: 452px;
+}
+.prach4{
+    background-position: 0 -328px;
+    top: 143px;
+    left: 260px;
+}
+.prach5{
+    background-position: 0 -435px;
+    top: 256px;
+    left: 409px;
+}
+.prach6{
+    background-position: 0 -545px;
+    top: 247px;
+    left: 575px;
+}

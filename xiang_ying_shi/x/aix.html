@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .heart {
+            width: 200px;
+            position: absolute;
+            z-index: 100;
+            aspect-ratio: 1;
+            border-image: radial-gradient(var(--heart, rgb(255, 191, 202)) 69%,#0000 70%) 84.5%/50%;
+            clip-path: polygon(-42% 0,50% 91%, 142% 0);
+            transition: border-image 2s;
+        }
+        img {
+           width: 200px;
+           aspect-ratio: 1;
+           --_m: radial-gradient(#000 69%,#0000 70%) 84.5%/50%;
+           -webkit-mask-box-image: var(--_m);
+                      mask-border: var(--_m);
+           clip-path: polygon(-42% 0,50% 91%, 142% 0);
+        }
+        /* 悬停透明 */
+        .heart:hover {
+            --heart: rgba(255, 191, 202, 0);
+        }
+    </style>
+</head> 
+<body>
+    <div class="heart"></div>
+    <img src="微信图片_20241010190702.png" alt="">
+</body>
+</html>
