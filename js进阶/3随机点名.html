@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: inline-block;
+            width: 150px;
+            height: 30px;
+            border: 1px solid pink;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            color: pink;
+            /*圆角边框*/
+            border-radius: 10px;
+            /* margin-top: 300px; */
+            /* margin-left: 300px; */
+            /* margin: 300px; */
+        }
+    </style>
+</head>
+
+<body>
+    抽中的选手： <div></div>
+    <script>
+	let arr = ['赵云', '黄忠', '关羽', '张飞', '马超', '刘备', '曹操', '孙权']
+      //随机抽取的名字显示到指定的标签内部
+      let div = document.querySelector('div')
+      let index = Math.floor(Math.random()*arr.length)
+      div.innerHTML = arr[index]
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>购物车全选功能</title>
+  <!-- 引入初始化 -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: #666;
+    }
+
+    body {
+      background: #fff;
+      color: #666;
+      font-size: 14px;
+    }
+
+    input {
+      outline: none;
+    }
+
+    .clearfix::before,
+    .clearfix::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+  
+  </style>
+  <!-- 引入购物车样式 -->
+  <style>
+    table {
+      width: 800px;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+
+    th {
+      font: normal 14px/50px '宋体';
+      color: #666;
+    }
+
+    th,
+    td {
+      border: none;
+      text-align: center;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    input[type='checkbox'] {
+      width: 13px;
+      height: 13px;
+    }
+
+    tbody p {
+      position: relative;
+      bottom: 10px;
+    }
+
+    tbody .add,
+    tbody .reduce {
+      float: left;
+      width: 22px;
+      height: 22px;
+      border: 1px solid #ccc;
+      text-align: center;
+      background: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    tbody input[type='text'] {
+      width: 50px;
+      float: left;
+      height: 18px;
+      text-align: center;
+    }
+
+    tbody .count-c {
+      width: 98px;
+      margin: 0 auto;
+    }
+
+    button[disabled] {
+      color: #ddd;
+      cursor: not-allowed;
+    }
+
+    tbody tr:hover {
+      background: #eee;
+    }
+
+    tbody tr.active {
+      background: rgba(241, 209, 149, 0.945);
+    }
+
+    .controls {
+      width: 790px;
+      margin: 10px auto;
+      border: 1px solid #ccc;
+      line-height: 50px;
+      padding-left: 10px;
+      position: relative;
+    }
+
+    .controls .del-all,
+    .controls .clear {
+      float: left;
+      margin-right: 50px;
+    }
+
+    .controls p {
+      float: right;
+      margin-right: 100px;
+    }
+
+    .controls span {
+      color: red;
+    }
+
+    .controls .pay {
+      position: absolute;
+      right: 0;
+      width: 80px;
+      height: 54px;
+      background: red;
+      font: bold 20px/54px '宋体';
+      color: #fff;
+      text-align: center;
+      bottom: -1px;
+    }
+
+    .controls .total-price {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="car">
+    <table>
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="all" />全选</th>
+          <th>商品</th>
+          <th>单价</th>
+          <th>商品数量</th>
+          <th>小计</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="carBody">
+        <tr>
+          <td>
+            <input class="s_ck" type="checkbox" readonly />
+          </td>
+          <td>
+            <img src="img/01.jpg" />
+            <p>牛奶</p>
+          </td>
+          <td class="price">5￥</td>
+          <td>
+            <div class="count-c clearfix">
+              <button class="reduce" disabled>-</button>
+              <input type="text" value="1" />
+              <button class="add">+</button>
+            </div>
+          </td>
+          <td class="total">5￥</td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input class="s_ck" type="checkbox" />
+          </td>
+          <td>
+            <img src="img/01.jpg" />
+            <p>牛奶</p>
+          </td>
+          <td class="price">10￥</td>
+          <td>
+            <div class="count-c clearfix">
+              <button class="reduce" disabled>-</button>
+              <input type="text" value="1" />
+              <button class="add">+</button>
+            </div>
+          </td>
+          <td class="total">20￥</td>
+          <td>
+            <a href="javascript:" class="del" >删除</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input class="s_ck" type="checkbox" />
+          </td>
+          <td>
+            <img src="img/01.jpg" />
+            <p>牛奶</p>
+          </td>
+          <td class="price">20￥</td>
+          <td>
+            <div class="count-c clearfix">
+              <button class="reduce" disabled>-</button>
+              <input type="text" value="1" />
+              <button class="add">+</button>
+            </div>
+          </td>
+          <td class="total">40￥</td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input class="s_ck" type="checkbox" />
+          </td>
+          <td>
+            <img src="img/01.jpg" />
+            <p>牛奶</p>
+          </td>
+          <td class="price">35￥</td>
+          <td>
+            <div class="count-c clearfix">
+              <button class="reduce" disabled>-</button>
+              <input type="text" value="1" />
+              <button class="add">+</button>
+            </div>
+          </td>
+          <td class="total">70￥</td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="controls clearfix">
+      <a href="javascript:" class="del-all">删除所选商品</a>
+      <a href="javascript:" class="clear">清理购物车</a>
+      <a href="javascript:" class="pay">去结算</a>
+      <p>
+        已经选中<span id="totalCount">0</span>件商品;总价：<span id="totalPrice" class="total-price">0￥</span>
+      </p>
+    </div>
+  </div>
+  <script>
+  //   let add = document.querySelectorAll('.add')
+  //   let reduce = document.querySelectorAll('.reduce')
+  //   let input = document.querySelectorAll('input[type="text"]')
+  // //给添加按钮注册点击事件, 获取商品数量的value,然后自增。如果数字大于0则解除减号的disabled状态
+  //   add.forEach((item,index)=>{
+  //     item.addEventListener('click',()=>{
+  //       input[index].value++
+  //       if(input[index].value > 1){
+  //         reduce[index].disabled = false
+  //       }
+  //       count()
+  //     })
+  //   })
+
+  //  //给减号按钮添加点击事件,获取商品数量的value,然后自减。如果数字小于等于0则添加减号的disabled状态
+  //  reduce.forEach((item,index)=>{
+  //     item.addEventListener('click',()=>{
+  //       input[index].value--
+  //       if(input[index].value <= 1){
+  //         reduce[index].disabled = true
+  //       }
+  //       count()
+  //     })
+  //   })
+
+  //   //创建一个计算函数，每次商品数量变化时计算总价和数量
+  //   function count(){
+  //     let totalCount = 0
+  //     let totalPrice = 0
+  //     if(count){
+
+  //     }
+  //     input.forEach((item,index)=>{
+  //       let danjia = parseInt(item.parentNode.parentNode.previousElementSibling.innerHTML)
+  //       let xiaoji = danjia * item.value
+  //       item.parentNode.parentNode.nextElementSibling.innerText = xiaoji
+  //       totalCount+=+item.value
+  //       totalPrice+=xiaoji1
+  //     })
+  //     console.log(totalCount,totalPrice)
+  //     document.getElementById('totalCount').innerText = totalCount
+  //     document.getElementById('totalPrice').innerText = totalPrice
+  //   }
+      //在遍历执行前，设定两个变量用来存储总数量和总价格
+      
+      //当函数执行时，获取所有输入框并遍历
+      
+        //在每一次遍历前先检查勾选是否被选中，选中则执行后面的否则不执行
+        
+        //获取输入框对应的前面的单价
+       
+        //计算小计
+        
+        //将小计赋值给后面的小计td
+       
+        //让所有的输入框数量累加到总数量里
+        
+        // 让所有的小计累加到总价格里
+       
+      // 将总数量和总价写到页面对应标签处
+  let add=document.querySelectorAll('.add')
+  let reduce=document.querySelectorAll('.reduce')
+  let checkbox=document.querySelectorAll('.s_ck')
+  let input=document.querySelectorAll('.clearfix>input')
+
+  //给添加按钮注册点击事件, 获取商品数量的value,然后自增。如果数字大于0则解除减号的disabled状态
+   add.forEach((item,index)=>{
+    item.addEventListener('click',()=>{
+        //找到对应的框，改变框的value
+      //item.previousElementSibling.value++
+      input[index].value++
+      if(input[index].value>1){reduce[index].disabled=false}
+      count()
+    })
+   })
+  
+   //给减号按钮添加点击事件,获取商品数量的value,然后自减。如果数字小于等于0则添加减号的disabled状态
+   reduce.forEach((item,index)=>{
+    item.addEventListener('click',()=>{
+      input[index].value--
+      if(input[index].value<=1){reduce[index].disabled=true}
+      count()
+    })
+   })
+      
+      
+//创建一个计算函数，每次商品数量变化时计算总价和数量
+function count(){
+  //在遍历执行前，设定两个变量用来存储总数量和总价格
+  let totalCount=0
+  let totalPrice=0
+  //当函数执行时，获取所有输入框并遍历
+  input.forEach((item,index)=>{
+     //在每一次遍历前先检查勾选是否被选中，选中则执行后面的否则不执行
+    if( checkbox[index].checked===true){
+          //获取输入框对应的前面的单价
+          let danjia= parseInt(item.parentNode.parentNode.previousElementSibling.innerText)
+          //计算小计
+          let xiaoji=danjia*item.value
+          //将小计赋值给后面的小计td
+          item.parentNode.parentNode.nextElementSibling.innerText=xiaoji+'￥'
+          //让所有的输入框数量累加到总数量里
+          totalCount+=+item.value
+          // 让所有的小计累加到总价格里
+          totalPrice+=xiaoji
+        }})
+    console.log(totalCount,totalPrice)
+    // 将总数量和总价写到页面对应标签处
+    document.querySelector('#totalCount').innerText=totalCount
+    document.querySelector('#totalPrice').innerText=totalPrice+'￥'
+}   
+ //勾选点击时执行一遍count
+   checkbox.forEach(item=>{
+    item.addEventListener('click',()=>{
+      count()
+    })
+   })   
+
+	 
+    //勾选点击时执行一遍count
+    
+
+
+  </script>
+
+</body>
+
+</html>

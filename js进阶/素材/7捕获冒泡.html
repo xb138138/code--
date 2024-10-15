@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #box1 {
+                width: 400px;
+                height: 400px;
+                background-color: red
+            }
+
+            #box2 {
+                width: 350px;
+                height: 350px;
+                background-color: greenyellow
+            }
+
+            #box3{
+                width: 300px;
+                height: 300px;
+                background-color: orange
+            }
+
+            #box4{
+                width: 200px;
+                height: 200px;
+                background-color: green;
+            } 
+            
+        </style>
+    </head>
+    <body>
+        <div class="bubblebox" id="box1">box1
+            <div class="bubblebox" id="box2">box2
+                <div class="bubblebox" id="box3">box3
+                    <div class="bubblebox" id="box4">box4</div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        
+         document.querySelectorAll('.bubblebox').forEach(item=>{
+            item.addEventListener('click',(e)=>{
+        //1、 冒泡：当点击时，鼠标所处位置在4个div元素的范围内，首先进行捕获，捕获到最下层的div4，则div4就是e.target，捕获后接着进行冒泡，从下往上依次触发相同事件
+                // alert(item.firstChild.textContent)
+        //2、e.target属性总是指向触发事件的元素，即使事件处理函数是在一个更高级的祖先元素上被定义的。
+                // alert(e.target.innerText)
+        //4、 阻止冒泡：
+            // e.stopPropagation()
+            },
+        //3、addEventListener第三个参数代表是捕获阶段触发（很少使用）还是冒泡阶段触发。如果是true是捕获阶段触发，即是先触发上级再触发下级，false（默认）是冒泡阶段触发，即先触发下级再触发上级。    
+            // true
+            )
+        })
+
+  
+
+       
+        // document.addEventListener("mousemove", (event) => {
+        //         box1.style.left = event.x + "px"
+        //         box1.style.top = event.y + "px"
+        //     })   
+
+        
+
+    </script>
+</html>

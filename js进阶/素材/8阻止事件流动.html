@@ -1,0 +1,71 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-09-02 14:32:50
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-10-01 10:25:46
+ * @FilePath: \code\js进阶\素材\8阻止事件流动.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #box1 {
+                width: 100px;
+                height: 100px;
+                background-color: greenyellow;
+                border-radius: 50%;
+                position: absolute;
+            }
+
+            #box2 {
+                width: 400px;
+                height: 400px;
+                background-color: orange;
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        <div id="box1"></div>
+        <div id="box2"></div>
+        <hr>
+        <a id='link1' href="http://www.hnkjzy.edu.cn/">湖南科技职业学院</a>
+        <hr>
+        <form action="http://www.hnkjzy.edu.cn/" method="get">
+            <input type="text" name="test">
+            <input type="submit" id="submit" >
+        </form>
+
+        <script>
+            let box1 = document.querySelector('#box1')
+            let box2 = document.querySelector('#box2')
+            //使小绿球可以跟随鼠标一起移动，同时在方框内部时小绿球不跟随移动
+            window,addEventListener('mousemove',(e)=>{
+                box2.innerHTML = `x轴坐标：${e.clientX}px<br> y轴坐标：${e.clientY}px`
+               if(e.target.id === 'box1'){
+                   
+               }else{
+                box1.style.top = e.clientY + 'px'
+                box1.style.left = e.clientX + 'px'
+               }
+           })
+            
+            // 阻止A链接的默认行为
+            document.querySelector('#link1').addEventListener('click',(e)=>{
+                e.preventDefault()
+                alert('阻止A链接的默认行为')
+            })
+            //阻止表单的提交按钮的默认行为
+            document.querySelector('#submit').addEventListener('click',(e)=>{
+                e.preventDefault()
+                alert('阻止表单的提交按钮的默认行为')
+            })
+        </script>
+    </body>
+</html>

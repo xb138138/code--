@@ -1,0 +1,64 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-09-19 20:36:14
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-10-11 18:51:03
+ * @FilePath: \code\js进阶\素材\10页面滚动加载.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // DOMContentLoaded举例
+    </script>
+    <style>
+        body{
+            background-color: aqua;
+            height: 4000px;
+        }
+        .content{
+            position: fixed;
+            width: 100vw;
+            top:70vh;
+            left:0;
+            height: 30vh;
+            background-image: url(./img/1.png);
+            background-repeat: no-repeat;
+            background-size:contain;
+            transition: all 0.5s;
+        }
+        .role{
+            position: absolute;
+            left: -100px;
+            width: 100px;
+            height: 100px;
+            top:calc(100% - 100px)
+        }
+
+    </style>
+</head>
+<body>
+    <div class="content">
+    <img class="role" src=" ./img/2.gif"></img>    
+    </div>
+</body>
+<script>
+   //实现页面滚动时从左往右进入小恐
+    let i = 0
+    let img = document.querySelector('.role')
+    window.addEventListener('scroll',() => {
+        i++
+        if(i*3 + 100 < window.innerWidth){
+        // img.style.left = i*3 + 'px'
+        // img.style.transform = `translateX(${i*3}px)`
+        let styles = getComputedStyle(img)
+        console.log(styles.left);
+        img.style.left = parseInt(styles.left) + i + 'px'
+        }
+    })
+</script>
+</html>

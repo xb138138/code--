@@ -1,0 +1,40 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-08-27 16:24:52
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-09-13 11:06:24
+ * @FilePath: \js课程\课堂文件\材料\素材\2获取dom元素2.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+
+<head>
+    <meta charset="utf-8">
+    <title>getElementById方法示例</title>
+</head>
+<body>
+    <h3>getElementsByID</h3>
+    <input type="text" id="userName"><br/>
+    <input type="button" value="单击获取文本框里的值" onClick="show1()">
+
+    <hr>
+    <h3>getElementsByTagName</h3>
+    <input type="text" value="1111"/><br/>
+    <input type="text" value="2222"/><br/>
+    <input type="text" value="3333"/><br/>
+    <input type="text" value="4444"/><br/>
+    <input type="text" value="5555"/><br/>
+    <input type="button" value="有多少个input元素？" onClick="show2()">
+</body>
+<script>
+    // 使用getElementsByID获取上面文本框里的值并弹出显示
+    function show1() {
+        let userName = document.getElementById('userName')
+        alert(userName.value)
+    }
+    // 使用getElementsByTagName获取页面上总共有多少个input元素并弹出显示
+    function show2() {
+        let inputs = document.getElementsByTagName('input')
+        alert(inputs.length)
+    }
+</script>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8" />
+  <title></title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+   
+    .wrapper {
+      width: 80%;
+      /* height: 100vh; */
+      background-color: #b3e5fc;
+      margin: 0 auto;
+      border-radius: 25px;
+      padding: 20px;
+    }
+    .header,.main{
+      display: flex;
+      align-items: center;
+      vertical-align: middle;
+    }
+    /* .main{
+      height: calc(100vh - 160px);
+    } */
+
+    .header .logo{
+        background-image: url('./images/logo.png');
+        flex:0.2;
+        height: 150px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    #searchdiv{
+      flex:0.8;
+      position: relative;
+    }
+
+    .header .s-btn{
+        background-color: red;
+        color: white;
+        font-weight: bold;
+        width: 100px;
+        height: 40px;
+        transform: translate(-8px,1px);
+        border-radius: 0px 10px 10px 0px;
+        vertical-align: top;
+        border: 1px solid red;
+    }
+
+    #cancel{
+      position: absolute;
+      left:68%;
+      background-image: url('./images/cancel.svg');
+      background-size: contain;
+      width: 20px;
+      height: 20px;
+      top:calc(50% - 10px);
+      border-radius: 10px;
+     cursor: pointer;
+    }
+    .header .search{
+        width: 70%;
+        height: 40px;
+        border: 1px solid gainsboro;
+        border-radius: 10px 0px 0px 10px;
+        padding-left: 20px;
+        font-size: 20px;
+        vertical-align: top
+    }
+ 
+    .leftbar{
+      flex: 0.2;
+      height: 95%;
+    }
+   
+    .tab {
+      position: fixed;
+      top:180px;
+      width: 220px;
+      background-color: #4fc3f7;
+      border-radius: 15px;
+      box-shadow: 2px 2px 2px  #01579b ;
+    }
+
+    .tab li {
+      position: relative;
+      float: left;
+      width: 98%;
+      height: 34px;
+      font-size: 22px;
+      line-height: 34px;
+      text-align: center;
+      cursor: pointer;
+      color: white;
+      margin: 10px auto;
+    }
+
+    .tab li:hover{
+      border-left: 4px solid red;
+      background-color: #f57f17;
+      
+    }
+   
+    .goodsList{
+      flex: 0.8;
+    }
+    .tab span {
+      position: absolute;
+      right: 0;
+      top: 10px;
+      background: #ddd;
+      width: 1px;
+      height: 14px;
+      overflow: hidden;
+    }
+
+    #goods{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      vertical-align: middle;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+
+    #goods>li{
+     margin: 5px;
+     width: 20%;
+     height: 55%;
+      font-size: 18px;
+     background-color: #00b0ff;
+     border-radius: 5px;
+     box-shadow: 2px 2px 5px gray;
+     padding: 5px;
+    margin: 10px;
+    color:white;
+    position: relative;
+    }
+
+    #goods>li:hover{
+      background-color: #f9a825;
+      scale: 1.05;
+    }
+
+    .addCart{
+      display: none;
+      width: 95%;
+      height: 30px;
+      background-color: brown;
+      text-align: center;
+      color: white;
+      font-weight: bolder;
+      border-radius: 5px;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    #goods>li>img{
+     width:100%;
+     border:1px solid rgb(190, 190, 190);
+     
+    }
+    
+    #goods>li>span{
+     display: block;
+     margin: 10px;
+     word-break: break-all
+    }
+    #goods>li>div{
+      display: flex;
+      height: 100px;
+      flex-direction: column;
+      justify-content:space-between
+    }
+    table {
+      width: 90%;
+      margin: 0 auto;
+     
+      border-collapse: collapse;
+      
+    }
+
+    th {
+      font: normal 14px/50px '宋体';
+      color: #666;
+    }
+
+    th,
+    td {
+      border: none;
+      text-align: center;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    input[type='checkbox'] {
+      width: 13px;
+      height: 13px;
+    }
+
+    tbody p {
+      position: relative;
+      bottom: 10px;
+    }
+
+    tbody .add,
+    tbody .reduce {
+      float: left;
+      width: 22px;
+      height: 22px;
+      border: 1px solid #ccc;
+      text-align: center;
+      background: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    tbody input[type='text'] {
+      width: 50px;
+      float: left;
+      height: 18px;
+      text-align: center;
+    }
+
+    tbody .count-c {
+      width: 98px;
+      margin: 0 auto;
+    }
+
+    button[disabled] {
+      color: #ddd;
+      cursor: not-allowed;
+    }
+
+    tbody tr:hover {
+      background: #eee;
+    }
+
+    tbody tr.active {
+      background: rgba(241, 209, 149, 0.945);
+    }
+
+    .controls {
+      width: 790px;
+      margin: 10px auto;
+      border: 1px solid #ccc;
+      line-height: 50px;
+      padding-left: 10px;
+      position: relative;
+    }
+
+    .controls .del-all,
+    .controls .clear {
+      float: left;
+      margin-right: 50px;
+    }
+
+    .controls p {
+      float: right;
+      margin-right: 100px;
+    }
+
+    .controls span {
+      color: red;
+    }
+
+    .controls .pay {
+      position: absolute;
+      right: 0;
+      width: 80px;
+      height: 50px;
+      background: red;
+      font: bold 20px/50px '宋体';
+      color: #fff;
+      text-align: center;
+      bottom: -1px;
+    }
+    input {
+      outline: none;
+    }
+
+    .clearfix::before,
+    .clearfix::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .controls .total-price {
+      font-weight: bold;
+    }
+    .cartcar{
+        background-color: #eee;
+        border-radius: 30px;
+        box-shadow: 5px 5px 5px rgb(176, 177, 174);
+        transition: all 1s;
+        width: 60%;
+        position: fixed;
+        top: calc(100% + 50px);
+        left: 20%;
+      
+    }
+    #tableContainer{
+      overflow-y: auto;
+      max-height: 600px;
+    }
+ 
+    .cartcar.active{
+      transform: translateY(-90px);
+    }
+    .cartcar.active.active1{
+      transform: translateY(calc(-100% - 50px));
+    }
+   
+    #cartDiv{
+      position: relative;
+    }
+    
+
+    #cartImg{
+      background-image: url('./images/购物车.svg');
+      background-size:60px 60px;
+      background-position: center;
+      background-repeat: no-repeat;
+      left: 5%;
+      width: 100px;
+      height: 100px;
+      background-color: rgb(50, 113, 240);
+      border-radius: 50px;
+      position: relative;
+      top:-30px
+    }
+    #cartNum{
+      position: absolute;
+      left:75%;
+      top:-15%;
+      font-size: 25px;
+      color: white;
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      background-color: #ae1414;
+      text-align: center;
+      line-height: 50px;
+     
+    }
+    #cartClose{
+      display: inline-block;
+      font-size: 20px;
+      left: calc(95% - 60px);
+      top:-20px;
+      position:  absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: #ae1414;
+      text-align: center;
+      line-height: 40px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+        <div class="logo"> </div>
+        <div id="searchdiv">
+          <input type="text" class="search" id="search" maxlength="50">
+          <span id="cancel"></span>
+          <button class="s-btn">搜索</button>
+        </div> 
+    </div>
+
+    <div class="main">
+      <div class="leftbar">
+        <ul class="tab">
+          <!-- <li class="tab-item" data-type=${item}>${item}</li> -->
+        </ul>
+      </div>
+     
+      <div class="goodsList">
+        <ul id="goods">
+  <!--  <li data-index=${index}>
+            <img src="./images/${item.pic1}" alt="" class="item-img" >
+            <div>
+                  <span class="item-title">${item.g_name}</span>
+                  <span class="item-price" style='color:red;font-weight:bolder'>${item.price}¥</span>   
+                  <button class='addCart'>添加到购物车</button>    
+            </div> 
+        </li>
+        -->
+        </ul> 
+      </div>
+    </div>
+  </div>
+  <div class="cartcar">
+    <div id="cartDiv">
+        <div id="cartImg"><span id="cartNum"></span> </div>
+        <span id="cartClose">X</span> 
+    </div>
+    <div id="tableContainer">
+      <table>
+        <thead>
+          <tr>
+            <th><input type="checkbox" id="all" />全选</th>
+            <th>商品</th>
+            <th>单价</th>
+            <th>商品数量</th>
+            <th>小计</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="carBody">
+          <!-- <tr data-id=${item.g_id}>
+              <td>
+                <input class="s_ck" type="checkbox" readonly />
+              </td>
+              <td>
+                <img src='./images/${item.pic1}' style='width:50px ;heigth:50px' />
+                <p>${item.g_name}</p>
+              </td>
+              <td class="price">${item.price} </td>
+              <td>
+                <div class="count-c clearfix">
+                  <button class="reduce" disabled>-</button>
+                  <input type="text" value=${item.num} />
+                  <button class="add">+</button>
+                </div>
+              </td>
+              <td class="total">${item.num*item.price}</td>
+              <td>
+                <a href="javascript:" class="del">删除</a>
+              </td>
+            </tr>-->
+        </tbody>
+      </table>
+      <div class="controls clearfix">
+        <a href="javascript:" class="del-all">删除所选商品</a>
+        <a href="javascript:" class="clear">清理购物车</a>
+        <a href="javascript:" class="pay">去结算</a>
+        <p>
+          已经选中<span id="totalCount">0</span>件商品;总价：<span id="totalPrice" class="total-price">0￥</span>
+        </p>
+      </div>
+    </div>   
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    goodsRender(goodsData)
+    listRennder(goodsData)
+//品类列表
+    // 渲染列表函数
+    function listRennder(data) {
+      let listArr = []
+      data.forEach(item => {
+        if(listArr.indexOf(item.c_type) === -1){
+          listArr.push(item.c_type)
+      // let listArr = new set()
+      // data.forEach(item => {
+      //   listArr.add(item.c_type)
+      // })
+
+          //清空后往类别列表里添加对应的类别LI
+          document.querySelector('.tab').innerHTML = ''
+          listArr.forEach(item => {
+            document.querySelector('.tab').innerHTML += `
+            <li class="tab-item" data-type=${item}>${item}</li>
+            `
+          })
+
+          //给类型列表的li添加事件委托监听，从原始数组过滤出类型与li元素类型相同的元素并进行渲染
+          document.querySelector('.tab').addEventListener('monusover', (e) => {
+            if(e.target.nodeName === 'LI'){
+              document.querySelector('.tab-item.active').classList.remove('active')
+            }
+          })
+        }
+      })
+        }
+    
+//商品列表
+    // 商品渲染函数
+    function goodsRender(data) {
+      goodsData.forEach((item, index) => {
+        document.querySelector('#goods').innerHTML += `
+        <li data-index=${index}>
+            <img src="./images/${item.pic1}" alt="" class="item-img" >
+            <div>
+                  <span class="item-title">${item.g_name}</span>
+                  <span class="item-price" style='color:red;font-weight:bolder'>${item.price}¥</span>   
+                  <button class='addCart'>添加到购物车</button>    
+            </div> 
+        </li>
+        `
+      })
+    }
+      //清空商品列表区后往里面添加商品li
+
+      // 往商品li添加事件监听，鼠标进入显示添加购物车按钮，鼠标移出隐藏添加购物车按钮，点击添加购物车按钮可以添加商品进购物车并显示
+    document.querySelectorAll('#goods li').forEach((item, index) => {
+      item.addEventListener('mouseover', () => {
+        item.lastElementChild.lastElementChild.style.display = 'block'
+      })
+      item.addEventListener('mouseout', () => {
+        item.lastElementChild.lastElementChild.style.display = 'none'
+      })
+      item.addEventListener('click', () => {
+        item.lastElementChild.lastElementChild.style.display = 'none'
+        addCart()
+      })
+    })
+       
+
+    
+//购物车
+    // 添加购物车函数，构建商品对象(id,name,price,pic1,num),every遍历购物车数组如果发现没有相同ID的商品则将商品对象推送进去，否则找到该商品对象将num自增
+    function addCart() {
+      let goodsobj={
+        id:goodsData[index].g_id,
+        name:goodsData[index].g_name,
+        price:goodsData[index].price,
+        pic1:goodsData[index].pic1,
+        num:1
+      }
+      if(cart.every(item=>{return item.id !== goodsobj.id})){cart.push(goodsobj)}
+      else{cart.forEach(item=>{if(item.id === goodsobj.id){item.num++}})}
+    }
+    //购物车渲染函数，如果商品数量大于1则显示购物车图标否则隐藏。清空购物车表格body，并遍历购物车数组的商品对象向表格body写入商品数据
+   
+
+//监听购物车，如果点击的是关闭按钮，则移除active类，否则切换,如果点的是购物车图标则切换active1，显示或隐藏详细购物车
+
+ 
+//搜索框 
+      //给搜索按钮添加事件监听，如果触发则从原始数组过滤出包含搜索字符的商品数据并进行渲染
+    document.querySelector('.s-btn').addEventListener('click', function(){
+        let result = goodsData.filter(item => {
+          return item.g_name.incudes(this.parentNode.firstElementChild.value)
+        })
+        goodsRender(result)
+    })
+      //给搜索框添加事件监听，如果按下回车键则进行搜索渲染
+    document.querySelector('#search').addEventListener('keyup', (e)=>{
+      if(e.keyCode === 13){document.querySelector('.s-btn').click()}
+    })
+      //给取消按钮添加事件监听，如果点击则清空搜索框并以原始数组渲染商品
+   document.querySelector('#cancel').addEventListener('click', ()=>{
+     document.querySelector('#search').value = ''
+     goodsRender(goodsData)
+   })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+</head>
+<body>
+<center>
+  <h2>实现二级联动下拉列表</h2><br/>
+  请选择所属地区： 
+    <select id="city">
+      <option value="" ></option>
+    </select>  
+    <select id="district"></select> 
+</center>
+
+
+
+</body>
+<script>
+    //城市  
+       let city = ['请选择','北京','天津','上海','重庆'];  
+       //地区  
+       let district = [[],  
+                       ['东城','西城','朝阳','海淀'],  
+                       ['河东','河西','河北','南开'],  
+                       ['黄埔','徐汇','长宁','静安'],  
+                       ['渝北','渝中','江北','江津']];  
+       //实现二级联动下拉列表
+      city.forEach(function(item,index){
+        document.querySelector('#city').innerHTML += `<option value="${item}">${item}</option>`
+      })
+      document.querySelector('#city').addEventListener('change',(e)=>{
+        document.querySelector('#district').innerHTML = ''
+        district[city.indexOf(e.target.value)].forEach(item=>{
+          document.querySelector('#district').innerHTML += `<option value="${item}">${item}</option>`
+        })
+      })
+   </script>
+</html>

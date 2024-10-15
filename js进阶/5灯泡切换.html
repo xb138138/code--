@@ -1,0 +1,47 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-08-27 21:42:52
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-09-20 21:56:06
+ * @FilePath: \js课程\课堂文件\材料\素材\5灯泡切换.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+   
+</style>
+<body>
+    <div id="test">
+        <img src="img/light.svg" >
+        <img src="img/light.svg" >
+        <img src="img/light.svg" >
+        <img src="img/light.svg" >
+        <img src="img/light.svg" >
+    </div>
+    
+ </body>  
+<script>
+  //编写代码实现有规律的变化灯泡颜色
+  
+  //1、设定一个信号变量
+  let i = 0
+  //2、创建一个定时器，每一秒执行一次
+  setInterval(()=>{
+    if(i===0){i=1}else{i=0}
+    document.querySelectorAll('img').forEach((item,index)=>{
+        if((index+i)%2===0){item.src="img/greenlight.svg"}
+        else{
+          item.src='img/redlight.svg'
+        }
+    })
+  },1000)
+  // 3、定时器指定执行函数，先将信号值反复切换，再获取所有图片组成的数组，遍历图片，利用图片的索引值去取余数，无余数就设定图片地址为绿色灯有余数就红色灯
+ 
+</script>
+</html>

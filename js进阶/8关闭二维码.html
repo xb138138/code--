@@ -1,0 +1,68 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-08-28 00:58:54
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-09-20 22:27:05
+ * @FilePath: \js课程\课堂文件\材料\素材\8关闭二维码.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .erweima {
+      width: 149px;
+      height: 152px;
+      border: 1px solid #000;
+      background: url('img/456.png') no-repeat;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      right: -52px;
+      top: -1px;
+      width: 50px;
+      height: 50px;
+      background: url('img/bgs.png') no-repeat -159px -102px;
+      cursor: pointer;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="erweima">
+    <span class="close"></span>
+  </div>
+  <div class="erweima">
+    <span class="close"></span>
+  </div>
+  <div class="erweima">
+    <span class="close"></span>
+  </div>
+  <div class="erweima">
+    <span class="close"></span>
+  </div>
+  <div class="erweima">
+    <span class="close"></span>
+  </div>
+
+  <script>
+    // 获取所有的关闭按钮
+    var closeButtons = document.querySelectorAll('.close');
+        // 遍历每个关闭按钮
+        closeButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                // 找到对应的父元素（二维码）并隐藏
+                this.parentElement.style.display = 'none';
+            });
+        });
+  </script>
+</body>
+
+</html>

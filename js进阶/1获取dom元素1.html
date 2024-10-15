@@ -1,0 +1,110 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-08-27 15:47:52
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-09-21 00:45:12
+ * @FilePath: \js课程\课堂文件\材料\素材\1获取dom元素1.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 600px;
+            text-align: center;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+        caption {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        tr {
+            height: 40px;
+            cursor: pointer;
+        }
+
+        table tr:nth-child(1) {
+            background-color: #ddd;
+        }
+
+        table tr:not(:first-child):hover {
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <caption>学生列表</caption>
+        <tr >
+            <th>序号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>家乡</th>
+        </tr>
+        <tr class="stu1">
+            <td>1</td>
+            <td class="name">小明</td>
+            <td>18</td>
+            <td>男</td>
+            <td>河北省</td>
+        </tr>  
+        <tr>
+            <td>2</td>
+            <td>小红</td>
+            <td>19</td>
+            <td>女</td>
+            <td>河南省</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>小刚</td>
+            <td>17</td>
+            <td>男</td>
+            <td>山西省</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>小丽</td>
+            <td>18</td>
+            <td>女</td>
+            <td>山东省</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>晓强</td>
+            <td>16</td>
+            <td>女</td>
+            <td>湖南省</td>
+        </tr>
+    </table>
+</body>
+<script>
+//获取第一位学生的姓名并弹出显示
+document.querySelectorAll('tr>td:nth-child(2)')[0].innerText
+//获取最后一位学生的省份并弹出显示
+document.querySelectorAll('tr>td:nth-child(5)')[4].innerText
+//提取所有的学生姓名并组成一个数组打印出来
+let arr = []
+document.querySelectorAll('tr>td:nth-child(2)').forEach(
+    item=>{
+        arr.push(item.innerText);
+    }
+)
+
+</script>
+</html>

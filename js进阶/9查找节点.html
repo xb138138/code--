@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 600px;
+            text-align: center;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+        caption {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        tr {
+            height: 40px;
+            cursor: pointer;
+        }
+
+        table tr:nth-child(1) {
+            background-color: #ddd;
+        }
+
+        table tr:not(:first-child):hover {
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <caption>学生列表</caption>
+        <tr >
+            <th>序号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>家乡</th>
+            <th>操作</th>
+        </tr>
+        <tr class="stu1">
+            <td>1</td>
+            <td class="name">小明</td>
+            <td>18</td>
+            <td>男</td>
+            <td>河北省</td>
+            <td><input type="text" name="" class="name">
+                <button>修改</button>
+                <button>获取姓名</button></td>
+        </tr>  
+        <tr>
+            <td>2</td>
+            <td>小红</td>
+            <td>19</td>
+            <td>女</td>
+            <td>河南省</td>
+            <td><input type="text" name="" class="name">
+                <button>修改</button>
+                <button>获取姓名</button></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>小刚</td>
+            <td>17</td>
+            <td>男</td>
+            <td>山西省</td>
+            <td><input type="text" name="" class="name">
+                <button>修改</button>
+                <button>获取姓名</button></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>小丽</td>
+            <td>18</td>
+            <td>女</td>
+            <td>山东省</td>
+            <td><input type="text" name="" class="name">
+                <button>修改</button>
+                <button>获取姓名</button></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>晓强</td>
+            <td>16</td>
+            <td>女</td>
+            <td>湖南省</td>
+            <td>
+                <input type="text" name="" class="name">
+                <button>修改</button>
+                <button>获取姓名</button>
+            </td>
+        </tr>
+    </table>
+</body>
+<script>
+//点击按钮，通过查找节点的方法获取姓名
+    document.querySelectorAll('.name+button+button').forEach(item=>{
+        item.addEventListener('click',()=>{
+          alert(  item.parentNode.parentNode.children[1].innerHTML)
+        })
+
+    })
+    // 实现姓名的修改
+    document.querySelectorAll('.name+button').forEach(item => {
+        // item.addEventListener('click', () => {
+        //     item.parentNode.parentNode.children[1].innerHTML = item.parentNode.children[0].value
+        // })
+        item.addEventListener('click',()=>{
+            let newName=item.previousElementSibling.value
+            item.parentNode.parentNode.children[1].innerHTML=newName
+        })
+        // previousElementSibling和prevousSibling的区别
+        // previousElementSibling只能获取元素节点
+        // previousSibling可以获取元素节点和文本节点
+        
+
+    })
+
+</script>
+</html>

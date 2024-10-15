@@ -1,0 +1,76 @@
+﻿<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-08-27 22:09:44
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-09-13 11:47:51
+ * @FilePath: \js课程\课堂文件\材料\素材\4获取修改元素属性.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>使用getAttribute读取节点的属性值</title>
+<style type="text/css">
+img{
+	border: 0px;
+	float: left;
+	padding:3px;
+	}
+body{
+	margin:0px;
+	font-size:12px;
+	line-height:20px;
+}
+input{
+	margin-top: 5px;
+}
+</style>
+<script type="text/javascript">
+	//点击按钮显示图片路径
+	function hh(){
+		alert(document.getElementById("fruit").getAnttribute("src"))
+	}
+	//点击按钮弹出显示喜欢的水果（基于上面的多选项）
+	function check(){
+		let arr = []
+		document.getElementsByName('enjoy').forEach(
+			item=>{
+				if(item.checked===true){arr.push(item.value)}
+			}
+		)
+		alert(arr)
+	}
+	//点击按钮切换图片
+	// function change(){
+	// 	let fruit = document.querySelector('#fruit').getAttribute("src")
+	// 	if(fruit==="img/fruit.jpg"){
+	// 		document.querySelector("#fruit").setAttribute("src","img/grape.jpg")
+	// 	}else{
+	// 		document.querySelector("#fruit").setAttribute("src","img/fruit.jpg")
+	// 	}
+	// }
+	function change(){
+        //如果A，则改为B，如果B则改为A
+        //fruit变量等于一个字符串，改的时候，改的也是fruit这个字符串
+        let fruit=document.querySelector('#fruit')
+        console.log(fruit)
+        if(fruit.getAttribute('src')==='img/fruit.jpg'){fruit.src='img/grape.jpg'}else{fruit.src='img/fruit.jpg'}
+
+    }
+</script>
+</head>
+
+<body>
+<img src="img/fruit.jpg" alt="水果图片" id="fruit" />
+<h1 id="love">选择你喜欢的水果：</h1>
+<input name="enjoy" type="checkbox" value="apple" />苹果
+<input name="enjoy" type="checkbox" value="banana" />香蕉
+<input name="enjoy" type="checkbox" value="grape" />葡萄
+<input name="enjoy" type="checkbox" value="pear" />梨
+<input name="enjoy" type="checkbox" value="watermelon" />西瓜
+<br />
+<input name="btn" type="button" value="显示图片路径" onclick="hh()" />
+<br /><input name="btn" type="button" value="喜欢的水果" onclick="check()" />
+<br /><input name="btn" type="button" value="改变图片" onclick="change()" />
+</body>
+</html>

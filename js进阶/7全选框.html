@@ -1,0 +1,123 @@
+﻿<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-08-28 00:50:18
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-09-20 23:32:02
+ * @FilePath: \js课程\课堂文件\材料\素材\7全选框.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>全选效果</title>
+<style type="text/css">
+.bg{
+	
+	background-repeat: no-repeat;
+	width: 730px;
+}
+td{text-align:center;
+font-size:13px;
+line-height:25px;
+}
+body{margin:0}
+</style>
+ 
+</head>
+
+<body><table border="0" cellspacing="0" cellpadding="0" class="bg">
+  <tr>
+    <td style="height:40px;">&nbsp;</td>
+    
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr style="font-weight:bold;">
+    <td><input id="all" type="checkbox" value="全选" onclick="checkAll();" />全选</td>
+  
+    <td>商品名称/出售者/联系方式</td>
+    <td>价格</td>
+  </tr>
+  <tr>
+	<td colspan="4"><hr style="border:1px  #CCCCCC dashed" /></td>
+    </tr>
+  
+  <tr>
+    <td><input name="product" type="checkbox" value="1" /></td>
+   
+    <td>杜比环绕，家庭影院必备，超真实享受<br />
+    出售者：ling112233<br />
+   </td>
+    <td>一口价<br />
+    2833.0 </td>
+  </tr>
+  <tr>
+	<td colspan="4"><hr style="border:1px  #CCCCCC dashed" /></td>
+    </tr>
+  <tr>
+    <td><input name="product" type="checkbox" value="2" /></td>
+    
+    <td>NVDIA 9999GT 512MB 256bit极品显卡，不容错过<br />
+      出售者：aipiaopiao110 <br />
+    </td>
+    <td>一口价<br />
+    6464.0 </td>
+  </tr>
+  <tr>
+	<td colspan="4"><hr style="border:1px  #CCCCCC dashed" /></td>
+    </tr>
+  <tr>
+    <td><input name="product" type="checkbox" value="3" /></td>
+    
+    <td>精品热卖：高清晰，30寸等离子电视<br />
+      出售者：阳光的挣扎 <br />
+     </td>
+    <td>一口价<br />
+    18888.0 </td>
+  </tr>
+  <tr>
+	<td colspan="4"><hr style="border:1px  #CCCCCC dashed" /></td>
+    </tr>
+   <tr>
+    <td><input name="product" type="checkbox" value="4" /></td>
+    
+    <td>Sony索尼家用最新款笔记本 <br />
+      出售者：疯狂的镜无<br />
+   </td>
+    <td>一口价<br />
+     5889.0 </td>
+  </tr>
+  <tr>
+	<td colspan="4"><hr style="border:1px  #CCCCCC dashed" /></td>
+    </tr>
+</table>
+
+</body>
+<script type="text/JavaScript">
+   let i=0
+  let gxk=document.querySelectorAll('[name=product]')
+ //点击全选框可以全选下面商品或者取消全选，下面商品全选后可以激活全选框为全选状态
+  function checkAll(e){
+    if(e.checked===true){i=4}else{i=0}
+    //在上面调用的时候  e===上面的那个this===全选的input
+    //怎么去分别去给下面的勾选框去赋值
+   gxk.forEach((item)=>{
+    //怎么拿到上面全选框的值赋给下面
+    item.checked=e.checked
+    })
+
+  }
+  // 对下面的勾选框的点击行为添加监听
+  gxk.forEach((item)=>{
+   item.addEventListener('click',()=>{
+      if (item.checked===true) {i++}else{i--}
+      console.log(i)
+      // 当出现一个4的时候，就代表着所有的被勾起来了，则全选也被勾起来 
+      // if(i===gxk.length){document.querySelector('#all').checked=true}else{
+      //   document.querySelector('#all').checked=false
+        document.querySelector('#all').checked=(i===gxk.length?true:false)
+   })
+    })
+
+ </script>
+</html>
