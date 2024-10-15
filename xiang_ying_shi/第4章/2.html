@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            width: 343px;
+            margin: 0 auto;
+            padding: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding-bottom: 150px;
+        }
+        ul,li{
+            padding: 0px;
+            margin: 0;
+            list-style: none;
+        }
+        ul li{
+            height: 50px;
+        }
+        .right{
+            float: right;
+            width: 180px;
+        }
+        input:focus{
+            background-color: rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+        form .footer{
+            text-align: center;
+        }
+        textarea{
+            background-image: url(images/tree.jpg);
+            /* 透明度 */
+            opacity: 0.4;
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            background-size: 50px;
+        }
+        .right-png,.warn-png,.attention-png{
+            position: relative;
+            top: 5px;
+            left: 270px;
+        }
+        .warn-png{
+            left: 238px;
+        }
+        .attention-png{
+            transform: translate(0%,-50%);
+        }
+        button[type="submit"]{
+            width: 100px;
+            height: 30px;
+            margin-top: 20px;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #25f941;
+            position: relative;
+            left: 50%;
+            top: 120px;
+            transform: translateX(-50%);
+        }
+        input[type="text"],input[type="email"],input[type="number"]{
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <ul>
+            <li>
+                <label for="">姓名：</label>
+                <span>
+                    <input class="right" type="text" maxlength="6" id="name">
+                    <img v-show="false" class="right-png" src="images/right.png" alt="">
+                </span>
+            </li>
+            <li>
+                <label for="">注册邮箱：</label>
+                <input class="right" type="email">
+                <img class="warn-png" src="images/warn.png" alt="">
+            </li>
+            <li>
+                <label for="">密码：</label>
+                <input class="right" type="number">
+                <img class="attention-png" src="images/attention.png" alt="">
+            </li>
+            <li>
+                <label for="">性别：</label>
+                <div class="right">
+                    <input type="radio" name="male">男
+                    <input type="radio" name="female">女
+                </div>
+            </li>
+            <li>
+                <label for="">年龄：</label>
+                <input class="right" type="number">
+            </li>
+            <li>
+                <label for="">兴趣：</label>
+                <div class="right">
+                    <input type="checkbox" name="sport">运动
+                    <input type="checkbox" name="music">音乐
+                    <input type="checkbox" name="movie">电影
+                </div>
+            </li>
+            <li>
+                <label for="">自我介绍：</label>
+                <textarea name="" id="" cols="25" rows="10"></textarea>
+            </li>
+            <button type="submit">注册</button>
+        </ul>
+    </form>
+    <script>
+        new Vue({
+            el: 'from',
+            data: {
+                
+            }
+        })
+    </script>
+</body>
+</html>
