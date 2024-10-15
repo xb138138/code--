@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <button @click="add">逆转世界</button>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data(){
+                return {
+                    msg:'hello world'
+                }
+            },
+            methods:{
+                add(){
+                    this.msg = this.msg === 'hello world' ? this.msg.split('').reverse().join('') : 'hello world'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

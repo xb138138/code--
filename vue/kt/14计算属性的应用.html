@@ -1,0 +1,80 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-09-18 08:42:47
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-10-08 11:45:54
+ * @FilePath: \code\vue\03.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        table{
+            border: 1px solid #000;
+            border-collapse: collapse;
+        }
+        td,th{
+            border: 1px solid #000;
+            padding: 5px;
+        }
+        input{
+            width: 50px;
+            text-align: center;
+        }
+        /* 合并单元格 */
+    </style>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tr>
+                <th>商品</th>
+                <th>价格</th>
+                <th>数量</th>
+                <th>小价</th>
+                <th >总价</th>
+            </tr>
+            <tr v-for="item in goodslist">
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td>
+                    <input type="number" v-model="item.num">
+                </td>
+                <td>{{item.price*item.num}}</td>
+                <td>{{total}}</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data(){
+                return {
+                    goodslist:[
+                        {name:'小米',price:1999,num:1},
+                        {name:'华为',price:2999,num:1},
+                        {name:'vivo',price:3999,num:1}
+                    ]
+                }
+            },
+            methods:{
+
+            },
+            computed:{
+                total(){   
+                    let sum = 0
+                    this.goodslist.forEach((item)=>{
+                        sum += item.price*item.num
+                    })
+                    return sum
+                }
+            }
+        })
+    </script>
+</body>
+</html>

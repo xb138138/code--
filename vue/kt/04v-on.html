@@ -1,0 +1,81 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-09-18 08:42:47
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-09-24 10:58:21
+ * @FilePath: \code\vue\03.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- v-on指令：绑定事件 -->
+        <!-- 语法 v-on:事件名="简单语句或者函数调用"，可以简写为“@事件名” -->
+        <button v-on:click="fn(123)">点我</button>
+        <hr>
+        <button v-on:click="add()">+</button>
+        <span>{{count}}</span>
+        <button @click="count--">-</button>
+        <hr>
+        老黑售货机
+        <br>
+        <button v-on:click="buy(5)">可乐</button>
+        <button v-on:click="buy(10)">咖啡</button>
+        <br>
+        <span @mouseover="eventTest('移入')" @mouseout="eventTest('移出')">余额：{{money}}元</span>
+        <hr>
+        老黑贷款机
+        <br>
+        <!-- <input type="number" id="money"> -->
+        <button @clic="">确认</button>
+        <br>
+        <span>贷款：{{loans}}元</span>
+    </div>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data(){
+                return{
+                    count:0,
+                    money:100,
+                    loans:0
+                }
+            },
+            methods:{
+                fn(key){
+                    alert('v-on'+key)
+                },
+                add(){
+                    //在methods中this指向的是vue实例
+                    // 在methods中访问data中的数据，都要通过this
+                    this.count++
+                },
+                buy(price){
+                    if(this.money >= price){
+                        this.money -= price
+                    }else{
+                        alert('余额不足')
+                    }
+                },
+                eventTest(dz){
+                    // 鼠标移入和移出时，背景变色
+                    // 事件触发后，会自动产生一个event对象，在事件绑定的回调函数中可以获取到该对象
+                    // event.target获取触发事件的事件源
+                    if(dz == '移入'){
+                        event.target.style.background = 'pink'
+                    }else if(dz == '移出'){
+                        event.target.style.background = 'white'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

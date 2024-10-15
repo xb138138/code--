@@ -1,0 +1,57 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-09-18 08:42:47
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-09-25 09:14:42
+ * @FilePath: \code\vue\03.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>html的style</h2>
+        <div style="width: 100px;height: 100px;background-color: red;"></div>
+        <h2>vue的style</h2>
+        <!-- vue中的style的语法：:style="表达式" -->
+         <!-- 适合需要更改样式的场景 -->
+          <!-- 样式名有中划线，转换为小驼峰命名 -->
+        <div :style="divSytle"></div>
+        <button @click="start()">start</button>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data(){
+                return {
+                    divSytle:{
+                        width:'100px',
+                        height:'100px',
+                        backgroundColor:'red'
+                    }
+                }
+            },
+            methods:{
+                start(){
+                    let initwidth = 100
+                    setInterval(()=>{
+                        initwidth++
+                        this.divSytle.width = initwidth+"px"
+                        if(initwidth % 2 == 0){
+                            this.divSytle.backgroundColor = "red"
+                        }else{
+                            this.divSytle.backgroundColor = "blue"
+                        }
+                    },1000)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

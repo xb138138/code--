@@ -1,0 +1,61 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-09-18 08:42:47
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-09-24 11:41:57
+ * @FilePath: \code\vue\03.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        .borderBlue{
+            border:blue 5px solid;
+        }
+        .borderPink{
+            border:pink 5px solid;
+        }
+        .size{
+            width: 200px;
+            height: 200px;
+        }
+        .bac{
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h5>对象控制class</h5>
+        <p class="border size bac"></p>
+        <hr>
+        <p :class="pClass"></p>
+        <button @click="toggleBorder()">切换边框</button>
+        <h5>数组控制class</h5>
+        <!-- 设置动态class语法2(语法)：适合 -->
+        <p :class="p1Class"></p>
+    </div>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data(){
+                return {
+                    pClass:{borderBlue:true,borderPink:false,size:true,bac:true},
+                    p1Class:['borderBlue','size'],
+                }
+            },
+            methods:{
+                toggleBorder(){
+                    this.pClass.borderBlue = !this.pClass.borderBlue
+                    this.pClass.borderPink = !this.pClass.borderPink
+                }
+            }
+        })
+    </script>
+</body>
+</html>

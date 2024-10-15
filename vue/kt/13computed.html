@@ -1,0 +1,42 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-09-18 08:42:47
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-10-08 10:45:09
+ * @FilePath: \code\vue\03.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{comDemo}}
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data(){
+                return {
+                    num:10,
+                    num1:20
+                }
+            },
+            methods:{
+
+            },
+            computed:{
+                // 计算属性
+                comDemo(){
+                    return 7+8+this.num-this.num1
+                }
+            }
+        })
+    </script>
+</body>
+</html>

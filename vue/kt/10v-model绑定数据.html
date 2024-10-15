@@ -1,0 +1,67 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-09-18 08:42:47
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-09-25 10:23:00
+ * @FilePath: \code\vue\03.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>个人信息</h1>
+        姓名:
+        <!-- v-model:双向数据绑定==> 表单元素/data -->
+         <!-- 语法：v-model="data中数据名 " -->
+        <!-- v-model.lazy 会在失去焦点的时候触发 -->
+        <input type="text" v-model.lazy="name">
+        <hr>
+        年龄:
+        <input type="number" v-model.number="age">
+        <hr>
+        爱好:
+        <input type="checkbox" v-model="hobby" value="音乐">音乐
+        <input type="checkbox" v-model="hobby" value="电影">电影
+        <input type="checkbox" v-model="hobby" value="游戏">游戏
+        <hr>
+        性别:
+        <input type="radio" v-model="sex" value="男">男
+        <input type="radio" v-model="sex" value="女">女
+        <hr>
+        班级：
+        <select v-model="classN">
+            <option >1班</option>
+            <option >2班</option>
+            <option >3班</option>
+        </select>
+        <hr>
+        <div>
+            你的个人信息有：<p>姓名：{{name}}, 年龄：{{age}}, 爱好：{{hobby}}, 性别：{{sex}}</p>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data(){
+                return {
+                    name:'',
+                    age:0,
+                    hobby:[],
+                    sex:'',
+                    classN:'1'
+                }
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>

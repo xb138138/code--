@@ -1,0 +1,62 @@
+<!--
+ * @Author: xb 1439545090@qq.com
+ * @Date: 2024-09-18 08:42:47
+ * @LastEditors: xb 1439545090@qq.com
+ * @LastEditTime: 2024-09-25 11:44:11
+ * @FilePath: \code\vue\03.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- v-for循环渲染 -->
+            <!-- 语法：v-for="变量名 in 数组/对象" -->
+            <li v-for="i in books" :key="i.id">{{i}}<button @click="del(i.id)">删除</li>
+            <div>
+                <h3>添加书籍</h3>
+                <p>书名:<input type="text" v-model="newBook"></p>
+                <p>作者:<input type="text" v-model="newAuthor"></p>
+                <button @click="addBook()">添加</button>
+            </div>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data(){
+                return {
+                    books:[
+                        {id:1,bookName:'红楼梦',author:'曹雪芹',price:100},
+                        {id:2,bookName:'西游记',author:'吴承恩',price:200},
+                        {id:3,bookName:'三国演义',author:'罗贯中',price:300},
+                        {id:4,bookName:'水浒传',author:'施耐庵',price:400}
+                    ],
+                    newBook:'',
+                    newAuthor:''
+                }
+            },
+            methods:{
+                addBook(){
+                    this.books.push({
+                        id:+new Date(),
+                        bookName:this.newBook,
+                        author:this.newAuthor
+                    })
+                },
+                del(id){
+                    let index = this.books.findIndex(item=>item.id == id)
+                    this.books.splice(index,1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+<body>
+    <div>
+        <span v-for="item in name">
+            <!-- 选中时加入，取消时删除 -->
+            <input type="checkbox" @click="Arr.includes(item)?Arr.splice(Arr.indexOf(item),1):Arr.push(item)"/>
+            <label for="">{{item}}</label>
+        </span>
+        <ul>
+            <li v-for="item in Arr">{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        const app = new Vue({
+            el: 'div',
+            data(){
+                return {
+                    name: ["科幻", "喜剧", "动漫", "冒险", "科技", "军事", "娱乐", "奇闻"],
+                    Arr:[]
+                }
+            },
+            methods: {
+                
+            }
+        })
+    </script>
+</body>
+</html>

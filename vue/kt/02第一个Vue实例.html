@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>插值表达式：{{name.charAt(2)}}</p>
+        <p>商品名称：{{name}}</p>
+        <!-- 插值表达式不能作为html标签的属性值 -->
+        <p>商品数量：<input type="number" v-model='num'></p>
+        <p>商品价格：<input type="number" v-model="print"></p>
+        <hr>
+        <p>总结：{{print * num}}</p>
+    </div>
+    <script>
+        //调用Vue构造函数
+        const app = new Vue({
+            //指定Vue实例挂载（管理）的页面元素
+            el:'#app',
+            //定义Vue的数据，要求是函数形式，函数名为data，返回值为一个对象
+            data(){
+                return{
+                    num:0,
+                    print:0,
+                    name:'冰淇淋'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

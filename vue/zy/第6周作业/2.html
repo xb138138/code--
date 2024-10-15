@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue.js"></script>
+</head>
+<body>
+    <ul>
+        <li v-for="(i,index) in num" :key="index">{{i}}<button @click="num.splice(index,1)">删除</button></li>
+        <button @click='random'>生成</button>
+    </ul>
+    <script>
+        new Vue({
+            el:"ul",
+            data(){
+                return{
+                    num:[]
+                }
+            },
+            methods:{
+                random(){
+                    this.num.push(Math.ceil(Math.random()*20))
+                }
+            }
+        })
+    </script>
+</body>
+</html>
