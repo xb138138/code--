@@ -38,9 +38,19 @@
             margin-top: 10px;
             cursor: pointer;
         }
+        button{
+            width: 100px;
+            height: 30px;
+            margin: 30px auto;
+            cursor: pointer;
+            position: relative;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+        }
     </style>
 </head>
-<body>
+<body> 
     <form action="">
         <ul>
             <li>
@@ -60,28 +70,33 @@
             </li>
             <li>
                 <label for="">体重：</label>
-                <input class="right" type="text" maxlength="6">kg
+                <div class="right">
+                    <input  type="text" style="width: 100px;">
+                    <span>kg</span>
+                </div>
             </li>
             <li>
                 <label for="">兴趣：</label>
                 <div class="right">
-                    <input type="checkbox" name="sport">运动
-                    <input type="checkbox" name="music">音乐
-                    <input type="checkbox" name="movie">电影
+                    <input type="checkbox" name="sport">唱歌
+                    <input type="checkbox" name="music">跳舞
+                    <input type="checkbox" name="movie">游泳
                 </div>
             </li>
             <li>
                 <label for="">喜欢的颜色：</label>
-                <input class="right" type="" maxlength="6">
+                <input class="right" type="color">
             </li>
             <li>
                 <label for="">上传头像</label>
-                <input class="right" type="text" maxlength="6">
+                <input class="right" type="file">
             </li>
             <li>
                 <label for="">你的建议：</label>
-                <textarea name="" id=""></textarea>
+                <br>
+                <textarea name="" id="" cols="49" rows="3"></textarea>
             </li>
+            <button>提交</button>
         </ul>
     </form>
 </body>
