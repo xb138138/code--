@@ -453,43 +453,51 @@
 
   <script src="data.js"></script>
   <script>
-    goodsRender(goodsData)
-    listRennder(goodsData)
+  goodsRender(goodsData)
+  listRender(goodsData)
+  let cart=[]
 //品类列表
     // 渲染列表函数
-    function listRennder(data) {
-      let listArr = []
-      data.forEach(item => {
-        if(listArr.indexOf(item.c_type) === -1){
-          listArr.push(item.c_type)
-      // let listArr = new set()
-      // data.forEach(item => {
-      //   listArr.add(item.c_type)
-      // })
-
-          //清空后往类别列表里添加对应的类别LI
-          document.querySelector('.tab').innerHTML = ''
-          listArr.forEach(item => {
-            document.querySelector('.tab').innerHTML += `
-            <li class="tab-item" data-type=${item}>${item}</li>
-            `
-          })
-
-          //给类型列表的li添加事件委托监听，从原始数组过滤出类型与li元素类型相同的元素并进行渲染
-          document.querySelector('.tab').addEventListener('monusover', (e) => {
-            if(e.target.nodeName === 'LI'){
-              document.querySelector('.tab-item.active').classList.remove('active')
-            }
-          })
-        }
+    function listRender(data){
+        //获取原始数组中的类别
+        let listArray=[]
+        data.forEach(item=>{
+          if(listArray.indexOf(item.c_type)===-1){
+            listArray.push(item.c_type)
+          }
+        })
+        // let listArray=new Set()
+        // data.forEach(item=>{
+        //   listArray.add(item.c_type)
+        // })
+        console.log(listArray)
+      //清空后往类别列表里添加对应的类别LI
+      document.querySelector(".tab").innerHTML=``
+      listArray.forEach(item=>{
+        document.querySelector(".tab").innerHTML+=`
+        <li class="tab-item" data-type=${item}>${item}</li>
+        `
       })
-        }
+      //给类型列表的li添加事件委托监听，从原始数组过滤出类型与li元素类型相同的元素并进行渲染
+      document.querySelector(".tab").addEventListener('mouseover',(e)=>{
+        console.log(e.target.tagName)
+          if(e.target.tagName==='LI'){
+              let listgoods=data.filter(item=>{
+               return item.c_type===e.target.dataset.type
+              })
+              goodsRender(listgoods)
+          }
+      })
+    }
+            
     
 //商品列表
     // 商品渲染函数
-    function goodsRender(data) {
-      goodsData.forEach((item, index) => {
-        document.querySelector('#goods').innerHTML += `
+   function goodsRender(data){
+      //清空商品列表区后往里面添加商品li
+      document.querySelector('#goods').innerHTML=''
+      data.forEach((item,index) => {
+        document.querySelector('#goods').innerHTML+=`
         <li data-index=${index}>
             <img src="./images/${item.pic1}" alt="" class="item-img" >
             <div>
@@ -499,62 +507,102 @@
             </div> 
         </li>
         `
-      })
-    }
-      //清空商品列表区后往里面添加商品li
-
+      });
       // 往商品li添加事件监听，鼠标进入显示添加购物车按钮，鼠标移出隐藏添加购物车按钮，点击添加购物车按钮可以添加商品进购物车并显示
-    document.querySelectorAll('#goods li').forEach((item, index) => {
-      item.addEventListener('mouseover', () => {
-        item.lastElementChild.lastElementChild.style.display = 'block'
-      })
-      item.addEventListener('mouseout', () => {
-        item.lastElementChild.lastElementChild.style.display = 'none'
-      })
-      item.addEventListener('click', () => {
-        item.lastElementChild.lastElementChild.style.display = 'none'
-        addCart()
-      })
-    })
+      document.querySelectorAll('#goods>li').forEach(item=>{
+          item.addEventListener('mouseover',()=>{
+            item.lastElementChild.lastElementChild.style.display='block'
+          })
+          item.addEventListener('mouseout',()=>{
+            item.lastElementChild.lastElementChild.style.display='none'
+          })
+          item.lastElementChild.lastElementChild.addEventListener('click',()=>{
+            addCart(item.dataset.index)
+          })
+   })
+  }
+
        
 
     
 //购物车
     // 添加购物车函数，构建商品对象(id,name,price,pic1,num),every遍历购物车数组如果发现没有相同ID的商品则将商品对象推送进去，否则找到该商品对象将num自增
-    function addCart() {
+    function addCart(index){
       let goodsobj={
-        id:goodsData[index].g_id,
-        name:goodsData[index].g_name,
-        price:goodsData[index].price,
-        pic1:goodsData[index].pic1,
-        num:1
+          id:goodsData[index].g_id,
+          name:goodsData[index].g_name,
+          price:goodsData[index].price,
+          pic1:goodsData[index].pic1,
+          num:1
       }
-      if(cart.every(item=>{return item.id !== goodsobj.id})){cart.push(goodsobj)}
-      else{cart.forEach(item=>{if(item.id === goodsobj.id){item.num++}})}
+
+      if(cart.every(item=>{return item.id!==goodsobj.id})){cart.push(goodsobj)}
+      else{
+        cart.map(item=>{
+          if(item.id===goodsobj.id){item.num++}
+        })}
+        cartRender()
+      console.log(cart)
     }
+
+
     //购物车渲染函数，如果商品数量大于1则显示购物车图标否则隐藏。清空购物车表格body，并遍历购物车数组的商品对象向表格body写入商品数据
-   
+   function cartRender(){
+     if(cart.length>=1){
+       document.querySelector('.cartcar').classList.add('active')
+     }else{
+       document.querySelector('.cartcar').classList.remove('active')
+     }
+     document.querySelector('#cartNum').innerHTML=cart.length
+
+     document.querySelector('#carBody').innerHTML=''
+      cart.forEach(item=>{
+        document.querySelector('#carBody').innerHTML+=`
+        <tr data-id=${item.id}>
+              <td>
+                <input class="s_ck" type="checkbox" readonly />
+              </td>
+              <td>
+                <img src='./images/${item.pic1}' style='width:50px ;heigth:50px' />
+                <p>${item.name}</p>
+              </td>
+              <td class="price">${item.price} </td>
+              <td>
+                <div class="count-c clearfix">
+                  <button class="reduce" disabled>-</button>
+                  <input type="text" value=${item.num} />
+                  <button class="add">+</button>
+                </div>
+              </td>
+              <td class="total">${item.num*item.price}</td>
+              <td>
+                <a href="javascript:" class="del">删除</a>
+              </td>
+            </tr>
+        `
+      })
+    }
 
 //监听购物车，如果点击的是关闭按钮，则移除active类，否则切换,如果点的是购物车图标则切换active1，显示或隐藏详细购物车
 
  
 //搜索框 
       //给搜索按钮添加事件监听，如果触发则从原始数组过滤出包含搜索字符的商品数据并进行渲染
-    document.querySelector('.s-btn').addEventListener('click', function(){
-        let result = goodsData.filter(item => {
-          return item.g_name.incudes(this.parentNode.firstElementChild.value)
-        })
-        goodsRender(result)
+    document.querySelector('.s-btn').addEventListener('click',function(){
+          let result=goodsData.filter(item=>{
+            return item.g_name.includes(this.parentNode.firstElementChild.value)
+          })
+          goodsRender(result)
     })
       //给搜索框添加事件监听，如果按下回车键则进行搜索渲染
-    document.querySelector('#search').addEventListener('keyup', (e)=>{
-      if(e.keyCode === 13){document.querySelector('.s-btn').click()}
-    })
+      document.querySelector('#search').addEventListener('keyup',(e)=>{
+        if(e.keyCode===13){document.querySelector('.s-btn').click()}
+      })
       //给取消按钮添加事件监听，如果点击则清空搜索框并以原始数组渲染商品
-   document.querySelector('#cancel').addEventListener('click', ()=>{
-     document.querySelector('#search').value = ''
-     goodsRender(goodsData)
-   })
+      document.querySelector('#cancel').addEventListener('click',()=>{
+        document.querySelector('#search').value=''
+        goodsRender(goodsData)
+      })
   </script>
 
 </body>
