@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+#goods{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      vertical-align: middle;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+
+    #goods>li{
+     margin: 5px;
+     flex:0.2;
+     height: 55%;
+      font-size: 18px;
+     background-color: #00b0ff;
+     border-radius: 5px;
+     box-shadow: 2px 2px 5px gray;
+     padding: 5px;
+    margin: 10px;
+    color:white;
+    position: relative;
+    }
+      #goods>li>img{
+     width:100%;
+     border:1px solid rgb(190, 190, 190);
+     
+    }
+    
+    #goods>li>span{
+     display: block;
+     margin: 10px;
+     word-break: break-all
+    }
+    #goods>li>div{
+      display: flex;
+      height: 100px;
+      flex-direction: column;
+      justify-content:space-between
+    }
+    #goods>li:hover{
+      background-color: #f9a825;
+      scale: 1.05;
+    }
+    </style>
+</head>
+<body>
+    <div class="goodsList">
+    <ul id="goods">
+        <li data-index="0">
+            <img src="./images/3517ef488dac828b.jpg" alt="" class="item-img">
+             <div>
+                  <span class="item-title">联想（Lenovo）拯救者Y9000P 2023</span>
+                  <span class="item-price" style="color:red;font-weight:bolder">9999¥</span>   
+                    
+            </div> 
+        </li>
+        
+        <li data-index="1">
+            <img src="./images/474efcd26613985b.jpg" alt="" class="item-img">
+             <div>
+                  <span class="item-title">ROG幻16 2023</span>
+                  <span class="item-price" style="color:red;font-weight:bolder">10099¥</span>   
+                  
+            </div> 
+        </li>
+        
+        <li data-index="2">
+            <img src="./images/440e4b5bb84663d9.jpg" alt="" class="item-img">
+             <div>
+                  <span class="item-title">ROG魔霸新锐 2023</span>
+                  <span class="item-price" style="color:red;font-weight:bolder">9999¥</span>   
+                  
+            </div> 
+        </li>
+        
+        <li data-index="3">
+            <img src="./images/9b9bd95b68e1919d.jpg" alt="" class="item-img">
+             <div>
+                  <span class="item-title">华硕天选4 锐龙版</span>
+                  <span class="item-price" style="color:red;font-weight:bolder">6999¥</span>   
+                 
+            </div> 
+        </li>
+        
+        <li data-index="4">
+            <img src="./images/huaweimate30pro5g_black_0.png" alt="" class="item-img">
+             <div>
+                  <span class="item-title">HUAWEI Mate 30 Pro 5G</span>
+                  <span class="item-price" style="color:red;font-weight:bolder">6999¥</span>   
+                  
+            </div> 
+        </li>
+        
+    </div>
+   <br>
+   
+</body>
+
+<script>
+    //添加事件监听：点击商品卡片时跳转到goodsJump页面并附加上商品索引
+    document.getElementById('goods').addEventListener('click',function(e){
+        if(e.target.classList.contains('item-img')){
+            location.href = 'assets/goodsJump.html?index='+e.target.parentNode.getAttribute('data-index')
+        }
+    })
+</script>
+</html>

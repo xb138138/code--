@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 定义正则表达式   reg 里面存的是对象
+        // let reg = /前端/
+        // // 2. 检测是否匹配 test （重点）
+        // let str = '我们大家都在学前端'
+        // // console.log(reg.test(str))
+        // // 3. 检索 exec()
+        // console.log(reg.exec(str))  // 返回的是数组
+
+        //  // console.log(/哈/.test('哈哈'))
+        // // console.log(/哈/.test('二哈'))
+        // // ^ 开头
+        // console.log(/^哈/.test('二哈'))  // false 
+        // console.log(/^哈/.test('我开心的哈哈大笑'))  // false 
+        // console.log(/^哈$/.test('我开心的哈哈大笑'))  // false 
+        // console.log(/^哈$/.test('哈哈'))  // false 
+        // console.log(/^哈$/.test('哈'))  // true  精确匹配
+
+ // console.log(/a/.test('a'))
+        // // * 量词 n >= 0 
+        // console.log(/a*/.test(''))
+        // console.log(/a*/.test('a'))
+        // console.log(/a*/.test('aa'))
+        // console.log(/a*/.test('aaaaaaaa'))
+        // console.log(/a*/.test('b'))
+        // console.log('--------------------------')
+        // // + 量词 n >= 1
+        // console.log(/a+/.test(''))
+        // console.log(/a+/.test('a'))
+        // console.log(/a+/.test('aa'))
+        // console.log(/a+/.test('aaaaaaaa'))
+        // console.log(/a+/.test('b'))
+        // console.log('--------------------------')
+        // // ? 出现 0 || 1 
+        // console.log(/^a?$/.test(''))
+        // console.log(/^a?$/.test('a'))
+        // console.log(/^a?$/.test('aa'))
+
+        // // {n}   只能出现 n次   符号之间不要加空格
+        // console.log(/^a{3}$/.test('aa'))
+        // console.log(/^a{3}$/.test('aaa'))
+        // console.log(/^a{3}$/.test('aaaa'))
+
+        // {n,}   >= n 
+        // console.log(/^a{3,}$/.test('aa'))
+        // console.log(/^a{3,}$/.test('aaa'))
+        // console.log(/^a{3,}$/.test('aaaa'))
+        // console.log('--------------------------')
+        // // {n,m}   >= n  <= m 
+        // console.log(/^a{3,6}$/.test('aa'))
+        // console.log(/^a{3,6}$/.test('aaa'))
+        // console.log(/^a{3,6}$/.test('aaaa'))
+        // console.log(/^a{3,6}$/.test('aaaaa'))
+        // console.log(/^a{3,6}$/.test('aaaaaaaa'))
+
+          // console.log(/abc/.test('abc'))
+        // console.log(/abc/.test('ab'))
+        // 字符类 []
+        // console.log(/[abc]/.test('abc'))
+        // console.log(/[abc]/.test(''))
+        // console.log(/[abc]/.test('andy'))
+        // console.log(/[abc]/.test('baby'))
+        // console.log(/[abc]/.test('cry'))
+        // console.log(/[abc]/.test('die'))
+
+        // 字符类 [-] 连字符
+        // console.log(/^[abc]$/.test('abc'))
+        // console.log(/^[abc]$/.test('a'))
+        // console.log(/^[abc]$/.test('b'))
+        // console.log(/^[abc]$/.test('c'))
+        // console.log(/^[abc]$/.test('cc'))
+
+        // // 26个英文字母选其中的一个
+        // console.log(/^[a-zA-Z]$/.test('d'))
+        // console.log(/^[a-zA-Z]$/.test('D'))
+        // console.log(/^[a-zA-Z]$/.test('DD'))
+        // console.log(/^[a-zA-Z0-9]$/.test('6'))
+        // console.log(/^[a-zA-Z0-9-_]$/.test('6'))
+
+        // console.log(/^abc+$/.test('cc'))
+
+    </script>
+</body>
+
+</html>

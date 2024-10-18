@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>小兔鲜儿 - 新鲜 惠民 快捷!</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <!-- <link rel="shortcut icon" href="./favicon.ico"> -->
+  <link rel="stylesheet" href="./assets/common.css">
+  <link rel="stylesheet" href="./assets/register.css">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_2143783_iq6z4ey5vu.css">
+</head>
+
+<body>
+  
+ 
+ 
+  <div class="xtx-wrapper">
+    <div class="container">
+      <!-- 卡片 -->
+      <div class="xtx-card">
+        <h3 >新用户注册</h3>
+        <form class="xtx-form">
+          <div data-prop="username" class="xtx-form-item">
+            <span class="iconfont icon-zhanghao"></span>
+            <input name="username" type="text" placeholder="设置用户名称">
+            <span class="msg"></span>
+          </div>
+          <div data-prop="phone" class="xtx-form-item">
+            <span class="iconfont icon-shouji"></span>
+            <input name="phone" type="text" placeholder="输入手机号码  ">
+            <span class="msg"></span>
+          </div>
+          <div data-prop="code" class="xtx-form-item">
+            <span class="iconfont icon-zhibiaozhushibiaozhu"></span>
+            <input name="code" type="text" placeholder="短信验证码">
+            <span class="msg"></span>
+            <a class="code" href="javascript:;">发送验证码</a>
+          </div>
+          <div data-prop="password" class="xtx-form-item">
+            <span class="iconfont icon-suo"></span>
+            <input name="password" type="password" placeholder="设置6至20位字母、数字和符号组合">
+            <span class="msg"></span>
+          </div>
+          <div data-prop="confirm" class="xtx-form-item">
+            <span class="iconfont icon-suo"></span>
+            <input name="confirm" type="password" placeholder="请再次输入上面密码">
+            <span class="msg"></span>
+          </div>
+          <div class="xtx-form-item pl50">
+            <i class="iconfont icon-queren"></i>
+            已阅读并同意<i>《用户服务协议》</i>
+          </div>
+          <div class="xtx-form-item">
+            <button class="submit">下一步</button>
+            <!-- <a class="submit" href="javascript:;">下一步</a> -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- 公共底部 -->
+  <div class="xtx_footer clearfix">
+  
+    <!-- 其它 -->
+    <div class="extra">
+      <div class="wrapper">
+        <!-- 口号 -->
+       
+        <!-- 版权信息 -->
+        <div class="copyright">
+          <p>
+            <a href="javascript:;">关于我们</a>
+            <a href="javascript:;">帮助中心</a>
+            <a href="javascript:;">售后服务</a>
+            <a href="javascript:;">配送与验收</a>
+            <a href="javascript:;">商务合作</a>
+            <a href="javascript:;">搜索推荐</a>
+            <a href="javascript:;">友情链接</a>
+          </p>
+          <p>CopyRight &copy; 小兔鲜儿</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 需求①： 发送验证码
+    //   用户点击之后，显示 05秒后重新获取 时间到了，自动改为 重新获取
+
+    // 需求②： 用户名验证（注意封装函数 verifyxxx）
+    //   正则 /^[a-zA-Z0-9-_]{6,10}$/
+    //   如果不符合要求，则出现提示信息 并 return false 否则 则返回return true
+    //   之所以返回 布尔值，是为了 最后的提交按钮做准备
+
+    // 需求③： 手机号验证
+    //   正则: /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/
+    //   其余同上
+
+    // 需求④： 验证码验证
+    //   正则 /^\d{6}$/
+    //   其余同上 
+
+    // 需求⑤： 密码验证
+    //   正则 /^[a-zA-Z0-9-_]{6,20}$/  其余同上
+
+    // 需求⑥： 再次密码验证
+    //   如果本次密码不等于上面输入的密码则返回错误信息 其余同上
+
+    // 需求⑦： 我同意模块
+    //   添加类 .icon-queren2 则是默认选中样式
+
+    // 需求⑧： 提交按钮模块
+    // 使用 submit 提交事件
+
+
+    // 如果上面的每个模块，返回的是 false 则 阻止提交 如果没有勾选同意协议，则提示 需要勾选
+
+  </script>
+</body>
+
+</html>

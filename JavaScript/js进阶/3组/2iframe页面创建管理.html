@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        #main {
+            display: flex;
+            align-self: center;
+            justify-content: center;
+            vertical-align: middle;
+            height: 100vh;
+        }
+
+        #left {
+            flex: 0.15;
+            list-style: none;
+            background-color: coral;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+
+        #left>li {
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            margin-top: 30px;
+        }
+
+        #left>li>a {
+            color: #eee;
+            text-decoration: none;
+        }
+
+        #content {
+            flex: 0.85;
+            height: 100%;
+            margin: 10px;
+
+        }
+
+        #pagediv {
+            height: calc(100% - 35px);
+        }
+
+        #tab {
+            list-style: none;
+            width: 100%;
+            height: 35px;
+            display: flex;
+        }
+
+        #tab>li {
+            border: 1px solid rgb(23, 24, 24);
+            border-bottom: none;
+            width: 100px;
+            height: 35px;
+            text-align: center;
+            font-size: 16px;
+            line-height: 35px;
+            background-color: rgb(210, 204, 204);
+            border-radius: 10px 10px 0px 0px;
+            color: #eee;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pages {
+            width: 100%;
+            height: calc(100% - 25px);
+            display: none;
+        }
+
+        #tab>li.active {
+            background-color: #3ECDE0;
+            width: 150px;
+        }
+
+        #tab>li.active .close {
+            display: block;
+        }
+
+
+        #pagediv>iframe.active {
+            display: block;
+        }
+
+        #inputArea {
+            width: 100%;
+            font-size: 16px;
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .close {
+            background-image: url(./images/cancel.svg);
+            background-color: coral;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background-size: 70%;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            background-position: center;
+            left: 90%;
+            top: -5px;
+            display: none;
+        }
+
+        .collect {
+            background-image: url(./images/五角星_空.svg);
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            background-position: center;
+            left: 5%;
+            top: 5px;
+            display: none;
+        }
+
+        .collect.done {
+            background-image: url(./images/实心五角星.svg);
+        }
+
+        #tab>li.active .collect {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <ul id="left">
+            <textarea name="" id="inputArea" rows="5"></textarea>
+            <li><a id="search">搜索</a></li>
+            <li><a id="parse">解析VIP视频</a></li>
+            <li><a id="collect">收藏页</a></li>
+        </ul>
+        <div id="content">
+            <ul id="tab">
+                <!-- <li  data-index=${index}>
+                    <span class='collect'></span>
+                    ${title}
+                    <span class='close'></span>
+                </li> -->
+            </ul>
+            <div id="pagediv">
+                <!-- <iframe src=${src} class='pages' data-index=${index}></iframe> -->
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    rander('首页','baidu.html')
+    //标签页渲染函数（标签页标题，页面地址）
+        function rander(title,src){
+            let index = 'i' + new data().getTime()
+            console.log(index)
+            document.querySelector('#tab').innerHTML += `
+            <li data-index=${index}>
+                <span class='collect'></span>
+                ${title}
+                <span class='close'></span>
+            </li>
+            `
+            document.querySelector('#pagediv').innerHTML += `
+            <iframe src=${src} class='pages' data-index=${index}></iframe>
+            `
+            activeRander(index)
+        }
+        function activeRander(index){
+            if(document.querySelector('li.article')){
+                document
+            }
+            document.querySelector(`[data-index=${index}]`).classList.add('active')
+            document.querySelector(`iframe[data-index=${index}]`).classList.add('active')
+        }
+        //创建一个以当前时间构建的索引值
+     
+        //在标签区添加一个标签，自定义索引值为刚刚构建的索引值
+       
+        //在页面区添加一个iframe页，自定义索引值为刚刚构建的索引值
+       
+        //调用激活渲染函数激活刚刚添加的标签页
+        
+        //遍历所有标签页的标签。
+     
+            //添加点击事件监听，如果点击则调用激活函数激活该标签页。
+            
+            //为收藏按钮添加点击事件监听，切换该按钮的done类，如果包含done类，则将该标签页的iframe页面地址保存到localstorage里
+     
+            //为关闭按钮添加点击事件监听，如果点击则进行判断，判断该标签页是否前面有标签页，如果前面有标签页则激活前面标签页。判断完后，移除点击的标签和对应iframe页面
+
+
+   /*  为左侧边栏添加事件委托监听，如果点击的是A标签，则判断e.target的id,
+    如果id是search,则拼接'https://www.bing.com/search?q='和输入框的值为变量src,且将e.target的文本和src传给渲染函数进行渲染，
+    如果id是'parse'，则拼接'https://www.yemu.xyz/?url='和输入框的值为变量src,且将e.target的文本和src传给渲染函数进行渲染，
+     如果id是'collect'，则将值'./assets/collect.html'设置为变量src,且将e.target的文本和src传给渲染函数进行渲染， */
+        document.querySelector('#left').addEventListener('click', (e) => {
+            if(e.target.tagName === 'A'){
+                let value = document.querySelector('#inputArea').value
+                let src = ''
+                if(e.target.id === 'search'){
+                    src = `https://www.bing.com/search?q=${value}`
+                }else if(e.target.id === 'parse'){
+                    src = `https://www.yemu.xyz/?url=${value}`
+                }else if(e.target.id === 'collect'){
+                    src = './assets/collect.html'
+                }
+                rander(e.target.innerText,src)
+            }
+        })
+    
+    //激活渲染函数：如果页面上的标签和iframe的active类存在则都移除，并根据传递的索引值将对应的标签和iframe页添加active类
+
+</script>
+
+</html>
