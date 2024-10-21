@@ -166,68 +166,81 @@
 
 </body>
 <script>
-    rander('首页','baidu.html')
-    //标签页渲染函数（标签页标题，页面地址）
-        function rander(title,src){
-            let index = 'i' + new data().getTime()
-            console.log(index)
-            document.querySelector('#tab').innerHTML += `
-            <li data-index=${index}>
-                <span class='collect'></span>
-                ${title}
-                <span class='close'></span>
-            </li>
-            `
-            document.querySelector('#pagediv').innerHTML += `
-            <iframe src=${src} class='pages' data-index=${index}></iframe>
-            `
-            activeRander(index)
-        }
-        function activeRander(index){
-            if(document.querySelector('li.article')){
-                document
-            }
-            document.querySelector(`[data-index=${index}]`).classList.add('active')
-            document.querySelector(`iframe[data-index=${index}]`).classList.add('active')
-        }
-        //创建一个以当前时间构建的索引值
-     
+      //标签页渲染函数（标签页标题，页面地址）
+      function rander(title,src){
+        //创建一个以当前时间构建的索引值       
+        let index='i'+new Date().getTime()
+        console.log(index)
         //在标签区添加一个标签，自定义索引值为刚刚构建的索引值
-       
-        //在页面区添加一个iframe页，自定义索引值为刚刚构建的索引值
-       
-        //调用激活渲染函数激活刚刚添加的标签页
-        
+        document.querySelector('#tab').innerHTML+=`
+        <li  data-index=${index}>
+            <span class='collect'></span>
+            ${title}
+            <span class='close'></span>
+        </li>`
+         //在页面区添加一个iframe页，自定义索引值为刚刚构建的索引值
+         document.querySelector('#pagediv').innerHTML+=`
+         <iframe src=${src} class='pages' data-index=${index}></iframe>
+         `
+         //调用激活渲染函数激活刚刚添加的标签页
+         activeRander(index)
         //遍历所有标签页的标签。
-     
+          
             //添加点击事件监听，如果点击则调用激活函数激活该标签页。
             
             //为收藏按钮添加点击事件监听，切换该按钮的done类，如果包含done类，则将该标签页的iframe页面地址保存到localstorage里
      
             //为关闭按钮添加点击事件监听，如果点击则进行判断，判断该标签页是否前面有标签页，如果前面有标签页则激活前面标签页。判断完后，移除点击的标签和对应iframe页面
+        document.querySelectorAll('#tab>li').forEach(item=>{
+            item.addEventListener('click',(e)=>{
+                console.log(item.dataset.index)
+                activeRander(item.dataset.index)
+            })
+            item.firstElementChild.addEventListener('click',(e)=>{
+                e.target.classList.toggle('done')
+                if(e.target.classList.contains('done')){
+                    document.querySelector(`iframe[data-index=${item.dataset.index}]`).src
+                }
 
 
-   /*  为左侧边栏添加事件委托监听，如果点击的是A标签，则判断e.target的id,
+            })
+
+
+
+        })
+    }
+       
+    function activeRander(index){
+        if(document.querySelector('li.active')){
+            document.querySelector('li.active').classList.remove('active')
+        }
+        if(document.querySelector('iframe.active')){
+            document.querySelector('iframe.active').classList.remove('active')
+        }
+        document.querySelector(`li[data-index=${index}]`).classList.add('active')
+        document.querySelector(`iframe[data-index=${index}]`).classList.add('active')
+    }
+
+     /*  为左侧边栏添加事件委托监听，如果点击的是A标签，则判断e.target的id,
     如果id是search,则拼接'https://www.bing.com/search?q='和输入框的值为变量src,且将e.target的文本和src传给渲染函数进行渲染，
     如果id是'parse'，则拼接'https://www.yemu.xyz/?url='和输入框的值为变量src,且将e.target的文本和src传给渲染函数进行渲染，
      如果id是'collect'，则将值'./assets/collect.html'设置为变量src,且将e.target的文本和src传给渲染函数进行渲染， */
-        document.querySelector('#left').addEventListener('click', (e) => {
-            if(e.target.tagName === 'A'){
-                let value = document.querySelector('#inputArea').value
-                let src = ''
-                if(e.target.id === 'search'){
-                    src = `https://www.bing.com/search?q=${value}`
-                }else if(e.target.id === 'parse'){
-                    src = `https://www.yemu.xyz/?url=${value}`
-                }else if(e.target.id === 'collect'){
-                    src = './assets/collect.html'
-                }
-                rander(e.target.innerText,src)
-            }
-        })
     
-    //激活渲染函数：如果页面上的标签和iframe的active类存在则都移除，并根据传递的索引值将对应的标签和iframe页添加active类
-
+     document.querySelector('#left').addEventListener('click',(e)=>{
+        if(e.target.tagName==='A'){
+            let value=document.querySelector('#inputArea').value
+            let src=''
+            if(e.target.id==="search"){
+                src=`https://www.bing.com/search?q=${value}`
+            }else if(e.target.id==='parse'){
+                src=`https://www.yemu.xyz/?url=${value}`
+            }else if(e.target.id==='collect'){
+                src='./assets/collect.html'
+            }
+            rander(e.target.innerText,src)
+        }
+     })
+    
 </script>
 
 </html>
