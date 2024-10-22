@@ -1,17 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- 父传子的数据是响应式的，父变子变 -->
+    <button @click="faCount++">+</button>
+    <SonCom1 msg="我是父组件的数据" :count="faCount" :user="user" :userlist="userlist"></SonCom1>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SonCom1 from './components/SonCom1.vue'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      faCount: 1,
+      user:{
+        id:3,
+        name:'林晨',
+        age:18,
+        address:'湖南'
+      },
+      userlist:[{
+        id:1,
+        name:'林晨',
+        age:19,
+        address:'湖南'
+      },{
+        id:2,
+        name:'小宝',
+        age:18,
+        address:'湖南'
+      }]
+    }
+  },
   components: {
-    HelloWorld
+    SonCom1
   }
 }
 </script>
