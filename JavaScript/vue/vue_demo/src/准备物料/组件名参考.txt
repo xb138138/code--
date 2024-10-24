@@ -1,0 +1,13 @@
+ShortCut
+HeaderNav
+Banner
+GoodsList
+HotBrand
+Footer
+
+
+ShortCut  => 快捷链接
+HeaderNav => 顶部导航
+Banner    => 轮播区域
+GoodsList  => 商品展示
+Footer    => 版权底部

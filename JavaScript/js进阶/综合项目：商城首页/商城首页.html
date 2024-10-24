@@ -39,6 +39,7 @@
     #searchdiv{
       flex:0.8;
       position: relative;
+      margin: 0%;
     }
 
     .header .s-btn{
@@ -52,7 +53,24 @@
         vertical-align: top;
         border: 1px solid red;
     }
-
+    .j-btn{
+      background-color: red;
+      width: 100px;
+      height: 40px;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      border: 1px solid red;
+      margin-right: 20px;
+    }
+    .jg{
+      width: 80px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid white;
+      font-size: 20px;
+      padding: 0 20px;
+    }
     #cancel{
       position: absolute;
       left:68%;
@@ -82,7 +100,7 @@
     .tab {
       position: fixed;
       top:180px;
-      width: 220px;
+      width: 200px;
       background-color: #4fc3f7;
       border-radius: 15px;
       box-shadow: 2px 2px 2px  #01579b ;
@@ -375,6 +393,14 @@
           <span id="cancel"></span>
           <button class="s-btn">搜索</button>
         </div> 
+        <div>
+          <button class="j-btn" id="priceSort">价格排序</button>
+        </div>
+        <div id="priceRange">
+          <input type="number" class="jg" id="minPrice">
+          ~
+          <input type="number" class="jg" id="maxPrice">
+        </div>
     </div>
 
     <div class="main">
@@ -417,7 +443,7 @@
           </tr>
         </thead>
         <tbody id="carBody">
-          <!-- <tr data-id=${item.g_id}>
+          <!-- <tr data-id=${item.id}>
               <td>
                 <input class="s_ck" type="checkbox" readonly />
               </td>
@@ -489,7 +515,7 @@
           }
       })
     }
-            
+			
     
 //商品列表
     // 商品渲染函数
@@ -518,6 +544,7 @@
           })
           item.lastElementChild.lastElementChild.addEventListener('click',()=>{
             addCart(item.dataset.index)
+            cartRander()
           })
    })
   }
@@ -535,32 +562,26 @@
           pic1:goodsData[index].pic1,
           num:1
       }
-
       if(cart.every(item=>{return item.id!==goodsobj.id})){cart.push(goodsobj)}
       else{
         cart.map(item=>{
           if(item.id===goodsobj.id){item.num++}
         })}
-        cartRender()
-      console.log(cart)
     }
 
 
-    //购物车渲染函数，如果商品数量大于1则显示购物车图标否则隐藏。清空购物车表格body，并遍历购物车数组的商品对象向表格body写入商品数据
-   function cartRender(){
-     if(cart.length>=1){
-       document.querySelector('.cartcar').classList.add('active')
-     }else{
-       document.querySelector('.cartcar').classList.remove('active')
-     }
-     document.querySelector('#cartNum').innerHTML=cart.length
-
-     document.querySelector('#carBody').innerHTML=''
+    //购物车渲染函数，如果商品数量大于等于1则显示购物车图标否则隐藏。清空购物车表格body，并遍历购物车数组的商品对象向表格body写入商品数据
+   function cartRander(){
+      if(cart.length>=1){document.querySelector('.cartcar').classList.add('active')}else{
+        document.querySelector('.cartcar').classList.remove('active')
+      }
+      document.querySelector('#cartNum').innerText=cart.length
+      document.querySelector('#carBody').innerHTML=''
       cart.forEach(item=>{
         document.querySelector('#carBody').innerHTML+=`
         <tr data-id=${item.id}>
               <td>
-                <input class="s_ck" type="checkbox" readonly />
+                <input class="s_ck" id='s_ck' type="checkbox" readonly />
               </td>
               <td>
                 <img src='./images/${item.pic1}' style='width:50px ;heigth:50px' />
@@ -580,12 +601,15 @@
               </td>
             </tr>
         `
-        
       })
-    }
+   }
 
-//监听购物车，如果点击的是关闭按钮，则移除active类，否则切换,如果点的是购物车图标则切换active1，显示或隐藏详细购物车
-
+//监听购物车，如果点击的是关闭按钮，则移除active类，如果点的是购物车图标则切换active1，显示或隐藏详细购物车
+document.querySelector('#cartDiv').addEventListener('click',(e)=>{
+  if(e.target.id==='cartClose'){document.querySelector('.cartcar').classList.remove('active')}else if(e.target.id==='cartImg'){
+    document.querySelector('.cartcar').classList.toggle('active1')
+  }
+})
  
 //搜索框 
       //给搜索按钮添加事件监听，如果触发则从原始数组过滤出包含搜索字符的商品数据并进行渲染
@@ -604,6 +628,49 @@
         document.querySelector('#search').value=''
         goodsRender(goodsData)
       })
+
+  //价格排序,给价格排序按钮添加事件监听，如果点击则从原始数组排序价格从低到高，再次点击则从原始数组排序价格从高到低
+  let flag=true
+  document.querySelector('#priceSort').addEventListener('click',()=>{
+    flag=!flag
+    goodsData.sort((a,b)=>{
+      if(flag){
+        return a.price-b.price
+      }else{
+        return b.price-a.price
+      }
+    })
+    goodsRender(goodsData)
+  })
+
+  // 价格区间筛选
+  document.querySelector('#priceRange').addEventListener('change',()=>{
+    let result=goodsData.filter(item=>{
+      return item.price>=document.querySelector('#minPrice').value&&item.price<=document.querySelector('#maxPrice').value
+    })
+    goodsRender(result)
+  })
+  
+  //点击购物车内按钮可以清除购物车、全选反选、删除单个商品等
+  // 清除购物车
+  document.querySelector('.clear').addEventListener('click',()=>{
+    cart=[]
+    cartRander()
+  })
+  // 全选反选
+  // document.querySelector('.s_ckAll').addEventListener('click',()=>{
+  //   if(document.querySelector('.s_ckAll').checked){
+  //     document.querySelector('.s_ckAll').checked=false
+  //     cart.forEach(item=>{
+  //       item.checked=false
+  //     })
+  //   }else{
+  //     document.querySelector('.s_ckAll').checked=true
+  //     cart.forEach(item=>{
+  //       item.checked=true
+  //     })
+  //   }
+  
   </script>
 
 </body>
