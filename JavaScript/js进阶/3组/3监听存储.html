@@ -21,7 +21,9 @@
 </body>
 <script>
     //为input添加事件监听，如果值发生变化则将颜色存入本地存储
-    
+    document.querySelector('input[type="color"]').addEventListener('input',()=>{
+        localStorage.setItem('color',document.querySelector('input[type="color"]').value)
+    })
    
 </script>
 </html>

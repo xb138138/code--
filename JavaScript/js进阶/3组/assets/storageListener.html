@@ -10,11 +10,10 @@
     <div id='div2' style="width: 300px;height: 300px;display: inline-block;"></div>
 </body>
 <script>
-    window.addEventListener('storage',()=>{
+    window.addEventListener('storage',(e)=>{
         let color=localStorage.getItem('color')
-        let secondColor='#'+(parseInt(color.replace('#',''),16)+Math.floor(Math.random()*100000)).toString(16)
         document.querySelector('#div1').style.backgroundColor=color
-        document.querySelector('#div2').style.backgroundColor=secondColor
+        document.querySelector('#div2').style.backgroundColor='#'+(16777216-parseInt(color.slice(1),16)).toString(16)
     })
 
 </script>

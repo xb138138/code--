@@ -286,8 +286,64 @@ textarea:focus {
 
 </body>
  <script>
- 
- 
+  // 获取元素
+  // function vasObj(){
+  //   let obj = {}
+  //   document.querySelectorAll('input').forEach((item)=>{
+  //     if(item.value){
+  //       obj[item.name] = item.value
+  //     }
+  //   })
+  //   localStorage.setItem('userObj',JSON.stringify(obj))
+  //   console.log(obj);
+    
+  // }
+  // // 事件绑定
+  // document.querySelector('.submit').addEventListener('click',()=>{
+  //   vasObj()
+  // })
+
+  //1.当页面加载时，自动从本地存储读取前面输入的数据
+
+  let obj=JSON.parse(localStorage.getItem('userObj'))||{}
+    console.log(obj)
+    for(key in obj){
+      if(key==='gender'){
+        document.querySelectorAll(`[name=${key}]`).forEach(item=>{
+
+          if(item.value===obj[key]){item.checked=true}
+        })
+      }else{
+        document.querySelector(`[name=${key}]`).value=obj[key]
+      }
+
+    }
+
+ //2.创建保存函数，收集页面上的数据转为对象并保存到本地存储
+function saveObj(){
+  let obj={}
+  document.querySelectorAll('input,textarea').forEach(item=>{
+      if(item.name==='gender'&&item.checked===true){
+        obj[item.name]=item.value
+      }else if(item.name&&item.name!=='gender'){
+        obj[item.name]=item.value
+      }
+  })
+  localStorage.setItem('userObj',JSON.stringify(obj))
+  console.log(obj)
+}
+
+//3.为保存按钮添加事件监听，每当点击时保存输入框的数据
+  document.querySelector('.submit').addEventListener('click',(e)=>{
+    saveObj()
+  })
+
+//4.为input添加事件监听，每当input时保存输入框的数据
+  document.querySelector('.user-form').addEventListener('input',(e)=>{
+    if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'){
+    saveObj()
+    }
+  })
  </script>
 
 </html>

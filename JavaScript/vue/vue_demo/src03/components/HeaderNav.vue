@@ -98,9 +98,7 @@
         </div>
         <!-- 指示器 -->
         <ol>
-          <li class="current"><i></i></li>
-          <li><i></i></li>
-          <li><i></i></li>
+          <li :class="{current:index==currentIndex}" v-for="(item,index) in imgNames" :key="index"><i></i></li>
         </ol>
       </div>
     </div>
@@ -110,7 +108,7 @@
 export default {
   data() {
     return {
-        imgNames:['banner1.png','clothes1.png','clothes2.png'],
+        imgNames:['banner1.png','clothes1.png','clothes2.png','clothes3.png'],
         currentIndex:0 //当前轮播图的下标
     }
   },

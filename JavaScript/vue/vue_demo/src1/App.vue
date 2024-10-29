@@ -1,16 +1,19 @@
 <template>
-  <MyDialog>你不好吗<h1>ku</h1></MyDialog>
+  <div class="wrap clearfix">
+    <location></location>
+    <index></index>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import MyDialog from './components/MyDialog.vue'
+import location from './components/location.vue'
+import index from './components/index.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    MyDialog
+    location,
+    index
   }
 }
 </script>

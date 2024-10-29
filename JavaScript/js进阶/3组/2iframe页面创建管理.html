@@ -202,11 +202,31 @@
                     document.querySelector(`iframe[data-index=${item.dataset.index}]`).src
                 }
 
-
+                //5.2为收藏按钮添加点击事件监听，切换该按钮的done类，如果包含done类，则将该标签页的iframe页面地址不重复的保存到localstorage里。如果不包含则取消保存
+                //5.2.1先获取格式化后的本地存储里已经存储的url数组，如果拿到数据最好，拿不到就给它一个空数组
+                // 5.2.2在页面上通过索引获取该LI对应的iframe的src
+                // 5.2.3如果包含done类，把不重复的src先存入url数组，
+                // 5.2.4如果不包含，检查数组里是否有该条地址，有则删除
+                // 5.2.5将格式化后的数组存入本地存储
+                item.firstElementChild.addEventListener('click',(e)=>{
+                    e.target.classList.toggle('done')
+                    let urlArray=JSON.parse(localStorage.getItem('urlArray'))||[]
+                    let src = document.querySelector(`iframe[data-index=${item.dataset.index}]`).src
+                    if(e.target.classList.contains('done')){
+                        if(urlArray.indexOf(src)===-1){urlArray.push(src)}
+                    }else{
+                        urlArray.splice(urlArray.indexOf(src),1)
+                    }
+                    localStorage.setItem('urlArray',JSON.stringify(urlArray))
+                })
             })
-
-
-
+// 
+            item.lastElementChild.addEventListener('click',(e)=>{
+                if(item.p){
+                    activeRander(item.p.dataset.index)}
+                document.querySelector(`li[data-index=${item.dataset.index}]`).remove()
+                document.querySelector(`iframe[data-index=${item.dataset.index}]`).remove()
+            })
         })
     }
        

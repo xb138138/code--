@@ -434,7 +434,7 @@
       <table>
         <thead>
           <tr>
-            <th><input type="checkbox" id="all" />全选</th>
+            <th><input type="checkbox" id="all" checked/>全选</th>
             <th>商品</th>
             <th>单价</th>
             <th>商品数量</th>
@@ -443,12 +443,12 @@
           </tr>
         </thead>
         <tbody id="carBody">
-          <!-- <tr data-id=${item.id}>
+          <tr data-id=${item.id}>
               <td>
                 <input class="s_ck" type="checkbox" readonly />
               </td>
               <td>
-                <img src='./images/${item.pic1}' style='width:50px ;heigth:50px' />
+                <img src='' />
                 <p>${item.g_name}</p>
               </td>
               <td class="price">${item.price} </td>
@@ -463,7 +463,7 @@
               <td>
                 <a href="javascript:" class="del">删除</a>
               </td>
-            </tr>-->
+            </tr>
         </tbody>
       </table>
       <div class="controls clearfix">
@@ -556,13 +556,14 @@
     // 添加购物车函数，构建商品对象(id,name,price,pic1,num),every遍历购物车数组如果发现没有相同ID的商品则将商品对象推送进去，否则找到该商品对象将num自增
     function addCart(index){
       let goodsobj={
+          newId:0,
           id:goodsData[index].g_id,
           name:goodsData[index].g_name,
           price:goodsData[index].price,
           pic1:goodsData[index].pic1,
           num:1
       }
-      if(cart.every(item=>{return item.id!==goodsobj.id})){cart.push(goodsobj)}
+      if(cart.every(item=>{return item.id!==goodsobj.id})){cart.push(goodsobj); cart[cart.length-1].newId=cart.length-1}
       else{
         cart.map(item=>{
           if(item.id===goodsobj.id){item.num++}
@@ -577,11 +578,11 @@
       }
       document.querySelector('#cartNum').innerText=cart.length
       document.querySelector('#carBody').innerHTML=''
-      cart.forEach(item=>{
+      cart.forEach((item)=>{
         document.querySelector('#carBody').innerHTML+=`
         <tr data-id=${item.id}>
               <td>
-                <input class="s_ck" id='s_ck' type="checkbox" readonly />
+                <input class="s_ck" id='s_ck' type="checkbox" readonly checked/>
               </td>
               <td>
                 <img src='./images/${item.pic1}' style='width:50px ;heigth:50px' />
@@ -597,7 +598,7 @@
               </td>
               <td class="total">${item.num*item.price}</td>
               <td>
-                <a href="javascript:" class="del">删除</a>
+                <a href="javascript:" class="del" id='del'>删除</a>
               </td>
             </tr>
         `
@@ -658,18 +659,46 @@ document.querySelector('#cartDiv').addEventListener('click',(e)=>{
     cartRander()
   })
   // 全选反选
-  // document.querySelector('.s_ckAll').addEventListener('click',()=>{
-  //   if(document.querySelector('.s_ckAll').checked){
-  //     document.querySelector('.s_ckAll').checked=false
-  //     cart.forEach(item=>{
-  //       item.checked=false
-  //     })
-  //   }else{
-  //     document.querySelector('.s_ckAll').checked=true
-  //     cart.forEach(item=>{
-  //       item.checked=true
-  //     })
-  //   }
+  document.querySelector('#all').addEventListener('change',()=>{
+    document.querySelectorAll('.s_ck').forEach(item=>{
+      item.checked=document.querySelector('#all').checked
+    })
+  })
+  // 改变单个商品选中状态时，全选按钮状态也跟着改变
+  document.querySelector('#carBody').addEventListener('change',(e)=>{
+    document.querySelector('#all').checked = Array.prototype.every.call(s_ck, (checkbox) => checkbox.checked)
+  })
+  // 删除单个商品
+  document.querySelector('#carBody').addEventListener('click',(e)=>{
+    cart.forEach((item,index)=>{
+      if(e.target.id==='del'+index){
+        cart.splice(index,1)
+        cartRander()
+      }
+    })
+  })
+  // 删除勾选商品
+  document.querySelector('.del-all').addEventListener('click',()=>{
+    document.querySelectorAll('.s_ck').forEach((item,index)=>{
+      if(item.checked){
+        cart = cart.filter(item=>item.newId!==index)
+      }
+    })
+    cartRander()
+  })
+
+  //计算商品数量和价格·
+  document.querySelector('#carBody').addEventListener('click',(e)=>{
+    let total = 0
+    let num = 0
+    cart.forEach((item)=>{
+      total+=item.num
+      num+=item.num*item.price
+    })
+    document.querySelector('#totalCount').innerText=total
+    document.querySelector('#totalPrice').innerText=num
+  })
+
   
   </script>
 
