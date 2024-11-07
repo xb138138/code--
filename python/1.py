@@ -13,3 +13,6 @@ print(zhangsan[gender])
 list = [1, 2, 3]
 for i in list:
     print(i)
+
+for i in range('a', 10):
+    print(i)

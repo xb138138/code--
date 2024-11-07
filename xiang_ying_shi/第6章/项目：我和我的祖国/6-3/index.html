@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <div class="right">
+        <h2>《我和我的祖国》</h2>
+        <img src="img/cd_tou.png" class="music_ico_1" height="140px" width="50" alt="">
+        <div class="music_pic">
+            <img src="img/1.jpeg" width="150" height="150" alt="">
+        </div>
+
+        <div class="music_word-box">
+            <div class='music_word'>
+            </div>
+        </div>
+
+        <div class='myAudio_div'>
+            <!-- 进度条 -->
+            <progress value='0' max='243000' id='progress'></progress>
+            <audio src="./media/myHome.mp3" id='myAudio' hidden></audio>
+            <!-- 时间 -->
+            <div style='text-align:left;font-size:16px;width: 50%; margin: 0 auto;'><span id='min'>0</span>:<span
+                    id='sec'>00</span>/4:25</div>
+            <div id='music_play' value='myHome.txt'><img id='music_ico' src="img/paused.png" width="40" height="40"
+                    alt="">
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="js/jquery-3.4.1.js"></script>
+<script src="./js/music.js"></script>
+
+</html>

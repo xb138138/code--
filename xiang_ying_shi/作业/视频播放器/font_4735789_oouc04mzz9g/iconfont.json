@@ -1,0 +1,37 @@
+{
+  "id": "4735789",
+  "name": "播放器",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1621430",
+      "name": "静音",
+      "font_class": "jingyin",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "1092118",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "2076215",
+      "name": "音量",
+      "font_class": "yinliang",
+      "unicode": "e87a",
+      "unicode_decimal": 59514
+    },
+    {
+      "icon_id": "7594046",
+      "name": "24gl-pauseCircle",
+      "font_class": "24gl-pauseCircle",
+      "unicode": "ea6d",
+      "unicode_decimal": 60013
+    }
+  ]
+}
