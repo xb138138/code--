@@ -6,13 +6,13 @@ print('我叫%s,今年%d岁了' % (name, age))
 
 # 创建一个张三的对象
 gender = ''
-zhangsan = {name: '张三', age: 18, gender: '男'}
+zhangSan = {name: '张三', age: 18, gender: '男'}
 
-print(zhangsan[gender])
+print(zhangSan[gender])
 
-list = [1, 2, 3]
-for i in list:
+lis = [1, 2, 3]
+for i in lis:
     print(i)
 
-for i in range('a', 10):
+for i in range(5, 11):
     print(i)
