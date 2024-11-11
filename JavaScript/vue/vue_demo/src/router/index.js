@@ -21,10 +21,6 @@ const routes = [
         path: '/goods',
         component: Goods
     },
-    {
-        path: '/login',
-        component: Login
-    },
     //商品详情
     {
         path: '/goodsdetail',
@@ -39,6 +35,21 @@ const routes = [
               {
                 path: 'goodsreview',  //  /goodsdetail/goodsreview
                 component: GoodsReview
+            }
+        ]
+    },
+    ,
+    {
+        path: '/login',
+        component: Login,
+        children: [
+            {
+                path: 'mm',  //  /goodsdetail/goodsintro
+                component: () => import('../components/login/mm.vue')
+            },
+            {
+                path: 'sm',  //  /goodsdetail/goodsreview
+                component: () => import('../components/login/sm.vue')
             }
         ]
     }
