@@ -339,11 +339,17 @@ function saveObj(){
   })
 
 //4.为input添加事件监听，每当input时保存输入框的数据
-  document.querySelector('.user-form').addEventListener('input',(e)=>{
-    if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'){
-    saveObj()
-    }
-  })
+  // document.querySelector('.user-form').addEventListener('input',(e)=>{
+  //   if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'){
+  //   saveObj()
+  //   }
+  // })
+
+  // 确认离开页面吗
+  window.onbeforeunload=(e)=>{
+      saveObj()
+      e.returnValue='确认离开页面吗'
+  }
  </script>
 
 </html>

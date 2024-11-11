@@ -615,8 +615,12 @@ document.querySelector('#cartDiv').addEventListener('click',(e)=>{
 //搜索框 
       //给搜索按钮添加事件监听，如果触发则从原始数组过滤出包含搜索字符的商品数据并进行渲染
     document.querySelector('.s-btn').addEventListener('click',function(){
+      let word = document.querySelector('#search').value
+      let reg = new RegExp(word,'i')
+
           let result=goodsData.filter(item=>{
-            return item.g_name.includes(this.parentNode.firstElementChild.value)
+            // return item.g_name.includes(this.parentNode.firstElementChild.value)
+            return reg.test(item.g_name)
           })
           goodsRender(result)
     })

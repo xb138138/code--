@@ -32,7 +32,15 @@
     <input type="text">
     <span></span>
     <script>
-        
+        document.querySelector('input').addEventListener('blur', (e) => {
+        if(/^[a-zA-a-zA-Z0-9-]{6,16}$/.test(e.target.value)){
+            document.querySelector('span').className = 'right'
+            document.querySelector('span').innerHTML = '要输正确'
+        }else{
+            document.querySelector('span').className = 'error'
+            document.querySelector('span').innerHTML = '0~16位'
+        }
+        })
     </script>
 </body>
 

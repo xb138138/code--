@@ -1,6 +1,8 @@
 <template>
     <div class="login">
-        <h2>账号密码登录</h2>
+        <h2>This is Login</h2>
+        <a href="" class="">密码账号登陆</a> 
+        <a href="" class="">扫码登录</a>
         <form @submit.prevent>
             <div><input type="text" placeholder="用户名"></div>
             <div><input type="password" placeholder="密码"></div>
@@ -18,7 +20,7 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style lang="scss">
 .login{
     width: 300px;
     height: 200px;
@@ -26,5 +28,8 @@ export default {
     border-radius: 10px;
     border:3px solid gray;
     margin: 50px auto;
+    a{
+        margin: 5px;
+    }
 }
 </style>
