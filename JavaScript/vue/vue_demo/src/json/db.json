@@ -1,0 +1,64 @@
+{
+  "goodsList": [
+    {
+      "id": "1",
+      "type": "时尚衣物",
+      "img": "clothes1.png",
+      "name": "欧莎",
+      "price": 200,
+      "introduce": "这个一个非常好的商品，受到广大用户的一致好评"
+    },
+    {
+      "id": "2",
+      "type": "时尚衣物",
+      "img": "clothes2.png",
+      "name": "雅戈尔",
+      "price": 350,
+      "introduce": "这款商品设计独特，品质卓越，深受消费者喜爱"
+    },
+    {
+      "id": "3",
+      "type": "时尚衣物",
+      "img": "clothes3.png",
+      "name": "李宁",
+      "price": 180,
+      "introduce": "这款运动装备轻盈舒适，适合各种户外运动"
+    },
+    {
+      "id": "4",
+      "type": "时尚衣物",
+      "img": "clothes4.png",
+      "name": "美的",
+      "price": 500,
+      "introduce": "这款家电节能环保，操作简单，是家庭生活的理想选择"
+    },
+    {
+      "id": "5",
+      "type": "新鲜好物",
+      "img": "fresh1.png",
+      "name": "阿迪达斯",
+      "price": 600,
+      "introduce": "这款运动鞋时尚潮流，舒适耐磨，适合各种运动场合"
+    },
+    {
+      "id": "7",
+      "type": "新鲜好物",
+      "img": "fresh3.png",
+      "name": "苏泊尔",
+      "price": 800,
+      "introduce": "这款厨具烹饪效果出色，易于清洁，是厨房的好帮手"
+    }
+  ],
+  "userList": [
+    {
+      "id": "1",
+      "userName": "zs",
+      "password": "123"
+    },
+    {
+      "id": "2",
+      "userName": "ls",
+      "password": "123"
+    }
+  ]
+}

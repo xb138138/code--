@@ -2,9 +2,10 @@
     <div class="goods">
       <!-- -->
       <h1>这是商品信息组件</h1>
+      <Search></Search>
       <ul>
-        <li v-for="item in goodsList" :key="item.goodsId">
-          商品id: {{ item.goodsId }}  &&& 
+        <li v-for="item in goodsList" :key="item.id">
+          商品id: {{ item.id }}  &&& 
           商品名称:
           <!-- 
           1.路由管理器在解析地址时，取'#'后'?'前的内容作为hash地址进行路由匹配
@@ -14,14 +15,18 @@
 
 
            -->
-          <router-link :to="`/goodsdetail/goodsintro?goodsid=${item.goodsId}`">{{ item.name }}</router-link>
+          <router-link :to="`/goodsdetail/goodsintro?goodsid=${item.id}`">{{ item.name }}</router-link>
         </li>
       </ul>
     </div>
   </template>
   
   <script>
+import axios from 'axios';
+import Search from '@/components/common/Search.vue';
+
   export default{
+    components:{Search},
     data(){
       return{
         goodsList:[]
@@ -30,11 +35,15 @@
     },
     created(){
       //向服务器端请求商品信息的数据，初始化goodsList
-      this.goodsList = [
-        {goodsId:1,name:'电脑'},
-        {goodsId:2,name:'鼠标'},
-        {goodsId:3,name:'电视'}
-      ]
+      axios({
+        url:"http://10.11.121.62:3000/goodsList",
+      }).then((res)=>{
+        let skey = this.$route.query.skey
+        this.goodsList = res.data
+        this.goodsList = res.data.filter((item)=>{
+          return item.name.includes(skey)
+        })
+      })
 
     }
   }

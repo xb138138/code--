@@ -12,6 +12,8 @@ export default {
     
 }
 </script>
+<!--  -->
+<!-- import axios from 'axios' -->
 <style lang="scss">
 .login{
     width: 300px;

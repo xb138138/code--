@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的音乐</title>
+    <link rel="stylesheet" href="music.css">
+</head>
+<body>
+    <header>
+        <h3 class="songName">HEAVEN</h3>
+        <p class="author">Aillee</p>
+    </header>
+
+    <main>
+        <!-- 歌词 -->
+        <div class="pageLyrics">
+            <ul class="data-list">
+                
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <audio id="myAudio" src="audio/Ailee - HEAVEN.mp3" hidden></audio>
+        <!-- 进度条 -->
+        <progress value='0' max='100' id='progress'></progress>
+        <!-- 功能区 -->
+         <div class="control">
+            <div class="left">
+                <img class="collect" src="images/MaterialSymbolsLightFavoriteOutline(0).svg" alt="" >
+                <img class="download" src="images/MaterialSymbolsDownload2OutlineRounded.svg" alt="">
+                <img class="more" src="images/IconoirMoreHorizCircle.svg" alt="">
+                <img class="comment" src="images/MdiCommentProcessingOutline.svg" alt="">
+                <div>
+                    <time datetime="00:00" id="time1">00:00</time>
+                    /
+                    <time datetime="00:00" id="time2">00:00</time>
+                </div>
+            </div>
+            <div class="center">
+                <img class="shuffle" src="images/PhShuffle.svg" alt="">
+                <img class="last" src="images/TablerPlayerSkipBackFilled.svg" alt="">
+                <img class="play" src="images/MaterialSymbolsPlayCircleRounded.svg" alt="">
+                <img class="next" src="images/TablerPlayerSkipForwardFilled.svg" alt="">
+                <img class="volume" src="images/FlowbiteVolumeUpOutline.svg" alt="">
+            </div>
+            <div class="right">
+                <div class="lyrics">
+                    写真
+                    <img class="switch" src="images/LineMdSwitchOff.svg" alt="">
+                </div>
+            </div>
+         </div>
+    </footer>
+</body>
+<script src="music.js"></script>
+</html>

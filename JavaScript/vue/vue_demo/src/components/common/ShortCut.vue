@@ -2,7 +2,7 @@
   <div class="shortcut">
     <div class="wrapper">
       <ul>
-        <li><a href="#/login" class="login">请先登录</a></li>
+        <li><a href="#/login/mm" class="login">请先登录</a></li>
 
         <li><a href="#">免费注册</a></li>
         <li>

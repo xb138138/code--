@@ -7,9 +7,10 @@
     <style>
         #content{
             width: 50%;
-            height: 400px;
+            height: 600px;
             border: 1px solid black;
             margin: auto;
+			overflow-y:auto ;
         }
         input{
             display: block;
@@ -22,16 +23,78 @@
             margin: auto;
             font-size: 20px;
         }
+        #progress{
+            margin: auto;
+           height: 30px;
+        }
+        #progressdiv{
+            width: 50%;
+            margin: auto;
+        }
     </style>
 </head>
 <body>
+	
     <div id="content">  
+       
+
     </div>
-    <input type="file">
-    <button>读取</button>
     
+     <div style='width:300px;margin: auto;'>
+	    进度：<progress max="100" id="progress" value="0"></progress>
+	    <input type="file">
+		<button>读取</button>
+	 </div>
+	 
 </body>
 <script>
- 
+//    document.querySelector('input').addEventListener('change',function(e){
+//        const fr = new FileReader()
+//        fr.readAsText(file[0])
+//        fr.onload=(ev)=>{
+//            console.log(ev.target.result);
+//            let newStr = ev.target.result + 'good'
+//            const blob = new Blob([newStr],{type:'text/plain'})
+//            const url = URL.createObjectURL(blob)
+//            const a = document.createElement('a')
+//            a.href = url
+//            a.download = 'test.txt'
+//            a.click()
+
+//        }
+       
+//    })
+
+   document.querySelector('button').addEventListener('click',function(e){
+       document.querySelector('input').click()
+   })
+   document.querySelector('input').addEventListener('change',function(e){
+       const fr = new FileReader()
+       if(/^text/.test(e.target.files[0].type)){
+           fr.readAsText(e.target.files[0])
+       }else if(/^image/.test(e.target.files[0].type)){
+           fr.readAsDataURL(e.target.files[0])
+       }else if(/^video/.test(e.target.files[0].type)){
+           fr.readAsArrayBuffer(e.target.files[0])
+       }else{
+           fr.readAsArrayBuffer(e.target.files[0])
+       }
+       fr.onload=(ev)=>{
+        if (/^base64/.test(ev.target.result)){
+            document.querySelector('#content').innerHTML = `<img src="${ev.target.result}">`
+        }else if(typeof ev.target.result === 'object'){
+            let url = URL.createObjectURL(new Blob([ev.target.result]))
+            document.querySelector('#content').innerHTML = `<video src="${url}" controls autoplay width="100%">`
+        }else{
+        document.querySelector('#content').innerHTML = `<img src="${ev.target.result}">`
+        }
+       }
+       fr.onprogress=(event)=>{
+           if(event.lengthComputable){
+               let percent = event.loaded / event.total * 100
+               document.querySelector('#progress').value = percent
+           }
+       }
+   })
 </script>
 </html>
