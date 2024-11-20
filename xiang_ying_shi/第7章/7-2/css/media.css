@@ -1,0 +1,31 @@
+/*  */
+/* 超小屏 */
+@media screen and (max-width: 576px) {
+    .item li{
+        width: 100%;
+    }
+}
+/* 小屏 */
+@media screen and (min-width: 576px) {
+    .item li{
+        width: 50%;
+    }
+}
+/* 中屏 */
+@media screen and (min-width: 768px) {
+    .item li{
+        width: 33.3333%;
+    }
+}
+/* 大屏 */
+@media screen and (min-width: 992px) {
+    .item li{
+        width: 25%;
+    }
+}
+/* 超大屏 */
+@media screen and (min-width: 1200px) {
+    .item li{
+        width: 20%;
+    }
+}

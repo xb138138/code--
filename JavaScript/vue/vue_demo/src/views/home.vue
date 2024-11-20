@@ -3,7 +3,6 @@
     <!-- -->
     <search></search>
     <header1></header1>
-    <ShortCut></ShortCut>
     <header-nav></header-nav>
     <goodList type="新鲜好物"></goodList>
     <goodList type="时尚衣物"></goodList>

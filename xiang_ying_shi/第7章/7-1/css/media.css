@@ -1,0 +1,91 @@
+/* 对环保网站做媒体查询 */
+
+/* 超大屏 */
+@media screen and (min-width: 1200px){
+    .banner{
+        min-height: 540px;
+    }
+}/* 大屏 */
+@media screen and (max-width: 1199px){
+    .banner{
+        min-height: 360px;
+    }
+}
+/* 中屏 */
+@media screen and (max-width: 992px){
+    .banner{
+        min-height: 300px;
+    }
+}
+/* 小屏 */
+@media screen and (max-width: 767px){
+    .banner{
+        min-height: 240px;
+    }
+}
+/* 超小屏 */
+@media screen and (max-width: 576px){
+    /* 汉堡菜单 */
+    .menu{
+        display: block;
+        cursor: pointer;
+    }
+    nav > ul{
+        display: none;
+    }
+    nav input[type="checkbox"]:checked + ul{
+        display: block;
+    }
+    nav ul li{
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    .logo{
+        display: none;
+    }
+
+    .banner{
+        min-height: 200px;
+    }
+    .footer p{
+        padding: 0 0 20px 0;
+    }
+    .mission{
+        padding: 20px 0;
+    }
+    .mission-container{
+        padding-top: 15px;
+    }
+    .mis-right h3{
+        font-size: 1.25em;
+    }
+    .mission-container h3{
+        font-size: 1.5em;
+    }
+    .mission-left,.mission-right{
+        width: 100%;
+        float: left;
+        padding: 0;
+    }
+    .mission-right{
+        margin: 30px 0 0 0;
+    }
+    .mis-left{
+        width: 13%;
+        margin-top: 3px;
+    }
+    .mis-right{
+        width: 82%;
+    }
+    .mis-right p{
+        margin: 10px 0 0 0;
+    }
+    .mis-one{
+        margin-bottom: 24px;
+    }
+    .mis-one:nth-child(3){
+        margin: 0;
+    }
+}
