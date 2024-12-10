@@ -84,19 +84,25 @@
     </dialog>
 </body>
 <script>
-   	//调用FileReader对象的readAsArrayBuffer方法读取xlsx文件，再调用sheetJS的 XLSX.read方法读取二进制数据，再将读取后的数据对象调用XLSX.utils.sheet_to_json方法转化为JSON格式数据。
-    document.querySelector('.btn').addEventListener('click',function(e){
+   	 let data=[]
+       //调用FileReader对象的readAsArrayBuffer方法读取xlsx文件，再调用sheetJS的 XLSX.read方法读取二进制数据，再将读取后的数据对象调用XLSX.utils.sheet_to_json方法转化为JSON格式数据。
+    document.querySelector('.btn').addEventListener('click',()=>{
         document.querySelector('#import').click()
     })
-   document.querySelector('#import').addEventListener('change',function(e){
-       const fr = new FileReader()
-       fr.readAsArrayBuffer(e.target.files[0])
-       fr.onload=(ev)=>{
-           let data = XLSX.read(ev.target.result,{type:'arrayBuffer'})
-           let array = XLSX.utils.sheet_to_json(data.Sheets['Sheet1'])
-           console.log(array)
-           array.forEach(item=>{
-            document.querySelector('tbody').innerHTML+=`
+    document.querySelector('#import').addEventListener('change',(e)=>{
+        const fr=new FileReader()
+        fr.readAsArrayBuffer(e.target.files[0])
+        fr.onload=(ev)=>{
+            let sheetData=XLSX.read(ev.target.result,{type:'arrayBuffer'})
+            console.log(sheetData)
+            data=XLSX.utils.sheet_to_json(sheetData.Sheets['Sheet1'])
+            rander(data)
+        }
+    })
+    function rander(data){
+        document.querySelector('tbody').innerHTML=''
+        data.forEach(item => {
+                document.querySelector('tbody').innerHTML+=`
                 <tr>
                     <td>${item.id}</td>
                     <td>${item.name}</td>
@@ -105,14 +111,31 @@
                     <td>${item.tel}</td>
                 </tr>
                 `
-           })
-       }
-   })
-   document.querySelector('.add').addEventListener('click',function(e){
-       document.querySelector('#add-dialog').showModal()
-   })
-   document.querySelector('#cancel').addEventListener('click',function(e){
-       document.querySelector('#add-dialog').close()
-   })
+            });
+
+    }
+
+
+
+    document.querySelector('.add').addEventListener('click',()=>{
+        document.querySelector('#add-dialog').showModal()
+
+    })
+    document.querySelector('#cancel').addEventListener('click',()=>{
+        document.querySelector('#add-dialog').close()
+    })
+
+    document.querySelector('#save').addEventListener('click',(e)=>{
+        let obj={
+            name:document.querySelector('#name').value,
+            sex:document.querySelector(".gender:checked")?.value||'男',    
+            age:document.querySelector('#age').value,
+            tel:document.querySelector('#tel').value,
+            id:data[data.length-1].id+1   //data最后一条数据的ID的基础上+1
+        }
+        data.push(obj)
+        rander(data)
+        document.querySelector('#add-dialog').close()
+    })
 </script>
 </html>

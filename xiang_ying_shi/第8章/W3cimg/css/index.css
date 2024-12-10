@@ -1,0 +1,93 @@
+body{
+    background-color: aliceblue;
+}
+.bg_logo{
+    background-color: aliceblue;
+    width: 100%;
+}
+#main_nav{
+    background-color: #eee;
+}
+#main_nav ul{
+    list-style: none;
+    font-size: 18px;
+    padding: 15px 0;
+    margin: 0;
+}
+#main_nav li{
+    display: inline;
+
+}
+#main_nav li a{
+    padding: 15px 20px;
+    color: #999;
+    text-decoration: none;
+}
+#main_nav li a:hover{
+    background-color: #444;
+    color: #fff;
+}
+
+nav input[type="checkbox"],
+.menu{
+  position: absolute;
+  /* 相对于父元素绝对定位 */
+  left: 2%;
+  top: 10px;
+  display: none;
+}
+/* 主体 */
+/* 左 */
+#left_side,#right_side{
+    font-size: 12px;
+    width: 178px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding-top: 10px;
+}
+#left_side h3,#right_side h3{
+    margin: 5px 0 0 8px;
+}
+#left_side ul,#right_side ul{
+    list-style: none;
+}
+#left_side li a,#right_side li a{
+    text-decoration: none;
+    color: #666;
+    display: block;
+    padding: 5px 0 5px 10px;
+}
+#left_side li a:hover{
+    background-color: #999;
+    color: #fff;
+}
+
+/* 右 */
+#right_side li a{
+    color: #f96767;
+}
+#right_side li a:hover{
+    background-color: #f96767;
+    color: #fff;
+}
+
+/* 中间 */
+#main_center{
+    font-size: 16px;
+    padding: 0 20px;
+}
+#main_center h2{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+#main_center p{
+    margin: 10px 0;
+}
+
+/* 页脚 */
+footer{
+    text-align: center;
+    padding: 15px 0;
+    font-size: 12px;
+    background-color: #eee;
+}

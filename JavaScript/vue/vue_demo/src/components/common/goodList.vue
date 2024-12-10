@@ -15,7 +15,7 @@
       <div class="bd">
         <ul>
           <li v-for="item in goodsList" :key="item.id">
-            <a href="#">
+            <a href="#/goods">
               <div class="pic"><img :src='require(`../../assets/${item.img}`)' alt="" /></div>
               <div class="txt">
                 <h4>{{item.name}}</h4>
@@ -30,8 +30,9 @@
   
 <script>
 import axios from 'axios';
-
+import goods from '../../views/goods.vue'
   export default {
+      components:'goods',
       props:{
         type:String
       },

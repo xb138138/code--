@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心动</title>
+    <link rel="shortcut icon" href="../images/public/MageX.svg" type="">
+    <link rel="stylesheet" href="../css/music.css">
+</head>
+<body>
+    <header>
+        <h3 class="songName">HEAVEN</h3>
+        <p class="author">Aillee</p>
+    </header>
+
+    <main>
+        <!-- 歌词 -->
+        <div class="pageLyrics">
+            <ul class="data-list">
+                
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <audio id="myAudio" src="../audio/HEAVEN.mp3" hidden></audio>
+        <!-- 进度条 -->
+        <progress value='0' max='100' id='progress'></progress>
+        <!-- 功能区 -->
+         <div class="control">
+            <div class="left">
+                <img class="collect" src="../images/public/MaterialSymbolsLightFavoriteOutline(0).svg" alt="" >
+                <img class="download" src="../images/public/MaterialSymbolsDownload2OutlineRounded.svg" alt="">
+                <img class="more" src="../images/public/IconoirMoreHorizCircle.svg" alt="">
+                <img class="comment" src="../images/public/MdiCommentProcessingOutline.svg" alt="">
+                <div>
+                    <time datetime="00:00" id="time1">00:00</time>
+                    /
+                    <time datetime="00:00" id="time2">00:00</time>
+                </div>
+            </div>
+            <div class="center">
+                <img class="shuffle" src="../images/public/PhShuffle.svg" alt="">
+                <img class="prev" src="../images/public/TablerPlayerSkipBackFilled.svg" alt="">
+                <img class="play" src="../images/public/MaterialSymbolsPlayCircleRounded.svg" alt="">
+                <img class="next" src="../images/public/TablerPlayerSkipForwardFilled.svg" alt="">
+                <img class="volume" src="../images/public/FlowbiteVolumeUpOutline.svg" alt="">
+            </div>
+            <div class="right">
+                <div class="lyrics">
+                    写真
+                    <img class="switch" src="../images/public/LineMdSwitchOff.svg" alt="">
+                </div>
+            </div>
+         </div>
+    </footer>
+</body>
+<script src="../js/music_obj.js"></script>
+<script src="../js/music.js"></script>
+</html>

@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>歌曲播放器</title>
-    <link rel="stylesheet" href="1.css" />
+<style>
+.text-link {
+  position: relative;
+  font-size: 18px;
+  color: blue;
+  text-decoration: underline;
+}
+
+.text-link:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
 </head>
 <body>
-    <audio src="audio/Ailee - HEAVEN.mp3" controls></audio>
-    <div class="container">
-        <ul class="data-list">
-        </ul>
-    </div>
+
+<a href="#" class="text-link">这是一个文字链接</a>
+<div class="text-link">
+    <img src="../images/flower3.png" alt="" >
+</div>
+
 </body>
-<script src="1.js"></script>
 </html>

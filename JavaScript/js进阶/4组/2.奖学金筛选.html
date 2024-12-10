@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script lang="javascript" src="./assets/xlsx.full.min.js"></script>
+    <style>
+        #table{
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        #table td,#table th{
+            width: 100px;
+            text-align: center;
+            border: 1px solid black;
+        }
+       #add-dialog{
+            width: 300px;
+            height: 300px;
+            margin: auto;
+            padding: auto;
+            border-radius: 20px;
+            box-shadow: 5px 5px 5px gray;
+            border: none;
+            font-size: 20px;
+            background-color: yellow;
+       }
+       thead>tr>td{
+        font-size: 12px;
+       }
+       #add-dialog div{
+        width:90%;
+        height: 50px;
+        margin: auto;
+       }
+       #add-dialog::backdrop{
+        background-color: rgba(199, 9, 9, 0.8);
+        filter: blur(200px);
+       }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <table id="table">
+            <thead>
+                <!-- <tr>
+                   <th>id</th>
+                  <th>name</th>
+                  <th>sex</th>
+                  <th>age</th>
+                  <th>tel</th>
+                </tr>  -->
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>id</td>
+                    <td>name</td>
+                    <td>sex</td>
+                    <td>age</td>
+                    <td>tel</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+    <input type="file" name="" id="import" style="display: none;">
+    <button class="btn">导入计算</button>  <button class="sort1">条件排序</button>    <button class="sort2">成绩排序</button>   <button class="output">导出</button>
+</body>
+<script>
+    /* 知识点：localcompare,Math.min,三元表达式,reduce,toFixed, sort,展开运算符,迭代器
+    
+    需求：
+    凡参评一等奖学金的学生，各科平均成绩在86分以上，单科成绩不得低于80分。凡参评二、三等奖学金的学生，各科平均成绩分别在82分、80分（含82分、80分），且单科成绩不得低于70分。（班级成绩普遍偏低的情况下，可以考虑班级排名，评选优秀者。学生干部除参评一等奖学金外，评其它等级奖
+学金，各科平均成绩可降低3分，其单科成绩不得低于65分） 
+    1.导入表格后，对表格里的每一行数据进行处理，添加min(最低分）,avg(平均分）,fit（可评等级）,note（备注）四项。
+    2.根据处理后的数据自动生成表头，并将低于60和65分的分别突出显示。
+    3.分别点击两个排序按钮，使得表格可以根据平均分或者根据可以评定的等级进行排序。
+    4.处理完成后，点击导出按钮，使用XLSX.utils.json_to_sheet(json)方法将数据转化为表对象，并调用XLSX.utils.book_new()创建一个工作薄，调用XLSX.utils.book_append_sheet(book,sheet,sheetname)将表对象插入工作簿，最后使用XLSX.writeFile(book,fileName)方法创建文件并下载
+    */
+
+   	//调用FileReader对象的readAsArrayBuffer方法读取xlsx文件，再调用sheetJS的 XLSX.read方法读取二进制数据，再将读取后的数据对象调用XLSX.utils.sheet_to_json方法转化为JSON格式数据。
+   document.querySelector('.btn').addEventListener('click',(e)=>{
+        document.querySelector('#import').click()
+   })
+   let data=[]
+   document.querySelector('#import').addEventListener('change',(e)=>{
+        const fr=new FileReader()
+        fr.readAsArrayBuffer(e.target.files[0])
+        fr.onload=(ev)=>{
+            let sheetData=XLSX.read(ev.target.result,{type:'arrayBuffer'})
+            let sheetJson=XLSX.utils.sheet_to_json(sheetData.Sheets['Sheet1'])
+            //
+             
+
+            //
+        }
+   })
+
+
+
+</script>
+</html>

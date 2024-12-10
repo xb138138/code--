@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<body>
+    <div class="container p-5">
+        <h3 class="text-info">注册新账号</h3>
+        <form action="" class="was-validated">
+            <!-- 第一行 -->
+            <div class="row">
+                <div class="from-group col-sm-6">
+                    <label for="email">账号</label>
+                    <input type="email" id="email" class="form-control" placeholder="请输入邮箱" name="user" required>
+                    <div class="invalid-feedback">请输入正确的邮箱</div>
+                </div>
+                <div class="from-group col-sm-6">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" class="form-control" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,15}$" placeholder="请输入密码" name="password" required>
+                    <div class="invalid-feedback">请输入8-15位密码和大小写字母组成的密码</div>
+                </div>
+            </div>
+            <!-- 第二行 -->
+            <div class="row">
+                <div class="from-group col-md-12">
+                    <label for="address">地址</label>
+                    <input type="text" id="address" class="form-control" placeholder="街道小区单元" name="address" required>
+                    <div class="invalid-feedback">请输入详细的地址</div>
+                </div>
+            </div>
+            <!-- 第三行 -->
+            <div class="row g-3">
+                <div class="col-sm-7">
+                    <label for="province">省份</label>
+                    <select name="" id="province" class="form-select" required>
+                        <option value="" disabled selected>请选择省份</option>
+                        <option value="hn">湖南省</option>
+                        <option value="hb">湖北省</option>
+                        <option value="gx">广西省</option>
+                        <option value="gd">广东省</option>
+                    </select>
+                    <div class="invalid-feedback">请选择省份</div>
+                </div>
+                <div class="col-sm">
+                    <label for="city">城市</label>
+                    <!-- 开始时候没有选中 -->
+                    <select name="" id="city" class="form-select" required>
+                        <option value="" disabled selected>请选择城市</option>
+                        <option value="hn">长沙市</option>
+                        <option value="hb">武汉市</option>
+                        <option value="gx">娄底市</option>
+                        <option value="gd">广州市</option>
+                    </select>
+                    <div class="invalid-feedback">请选择城市</div>
+                </div>
+                <div class="col-sm">
+                    <label for="city">邮编</label>
+                    <input type="text" class="form-control" placeholder="请输入邮编" aria-label="State" required>
+                    <div class="invalid-feedback">请输入邮编</div>
+                </div>
+            </div>
+            <div>
+                
+            </div>
+        </form>
+    </div>
+</body>
+</html>

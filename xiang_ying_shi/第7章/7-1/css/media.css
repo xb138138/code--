@@ -33,14 +33,8 @@
     nav > ul{
         display: none;
     }
-    nav input[type="checkbox"]:checked + ul{
+    nav input[type="checkbox"]:checked {
         display: block;
-    }
-    nav ul li{
-        width: 100%;
-        text-align: center;
-        margin: 0;
-        padding: 0;
     }
     .logo{
         display: none;

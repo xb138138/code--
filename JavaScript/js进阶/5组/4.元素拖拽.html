@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #list{
+        margin: 20px auto;
+      
+        
+    }
+    .li-item{
+    
+        width:350px;
+        height:50px;
+        line-height: 40px;
+        background-color: #3366FF;
+        color: white;
+        font-size: 20px;
+        margin-top: 10px;
+        border-radius: 5px;
+        padding: 10px; 
+        border: 2px solid black;
+       box-shadow: 2px 2px 2px goldenrod;
+    }
+    .draging{
+        border: 2px dashed red;
+        background-color: transparent;
+    }
+</style>
+
+<body>
+    <div id="list">
+        <div class="li-item" draggable="true">1</div>
+        <div class="li-item" draggable="true">2</div>
+        <div class="li-item" draggable="true">3</div>
+        <div class="li-item" draggable="true">4</div>
+        <div class="li-item" draggable="true">5</div>
+    </div>
+    
+</body>
+<script>
+/*
+知识点：异步，拖拽事件dragstart、dragenter、dragend，展开运算符，insertBefore
+1、使得元素可以拖动，当拖动时改变原位置样式，而不改变拖动过程中的样式
+2、拖动到某一元素时插入到该元素前面或者后面
+3、拖动结束后改回原样式
+*/
+let list=document.querySelector('#list')
+let dragitem
+list.addEventListener('dragstart',(e)=>{
+    setTimeout(()=>{
+        e.target.classList.add('draging')
+
+    },0)
+    dragitem=e.target
+})
+
+list.addEventListener('dragenter',(e)=>{
+    //通过获取父元素的子元素的集合来获取这些元素的索引值,通过索引值判断被拖拽的元素和拖拽进入的元素的先后顺序，通过先后顺序判断是插入前面还是插入后面
+if(e.target.className==='li-item'){
+    if([...list.children].indexOf(dragitem) -[...list.children].indexOf(e.target)>0){
+    list.insertBefore(dragitem,e.target)
+   }else{
+    list.insertBefore(e.target,dragitem)
+   }
+}
+})
+
+list.addEventListener('dragend',(e)=>{
+    e.target.classList.remove('draging')
+})
+
+
+</script>   
+
+
+
+
+</html>

@@ -1,0 +1,29 @@
+@media screen and (max-width: 769px) {
+    #right_side{
+        display: none;
+    }
+    .bg_logo img{
+        width: 178px;
+        height: 60px;
+    }
+    .menu{
+        display: block;
+        cursor: pointer;
+        left: 220px
+    }
+    nav > ul{
+        display: none;
+    }
+    nav input[type="checkbox"]:checked + ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    nav ul li{
+        width: 25%;
+    }
+}
+@media screen and (min-width: 770px) {
+    #right_side{
+        display: block;
+    }
+}
